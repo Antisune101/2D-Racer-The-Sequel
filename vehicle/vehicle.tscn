@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7hiuk84b2in1"]
+
+[ext_resource type="Script" path="res://vehicle/vehicle.gd" id="1_vxku7"]
+[ext_resource type="Script" path="res://vehicle/vehicle_speed.gd" id="2_8y78p"]
+
+[sub_resource type="Curve2D" id="Curve2D_6tdxm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -100, -56, 0, 0, 0, 0, 92, 40)
+}
+point_count = 2
+
+[node name="Vehicle" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_vxku7")
+
+[node name="VehicleSpeed" type="Node" parent="."]
+script = ExtResource("2_8y78p")
+
+[node name="VehicleSteering" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6tdxm")
+
+[node name="SteerAnchor" type="PathFollow2D" parent="VehicleSteering"]
+position = Vector2(-100, -56)
+rotates = false
+loop = false

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://b057vsdgbrsbr"]
+
+[ext_resource type="PackedScene" uid="uid://bmo4fddp0ki45" path="res://misc/movement_path.tscn" id="1_bnbuf"]
+[ext_resource type="PackedScene" uid="uid://d3wmsrrxktmkx" path="res://misc/road/road.tscn" id="1_gfh36"]
+[ext_resource type="PackedScene" uid="uid://b7hiuk84b2in1" path="res://vehicle/vehicle.tscn" id="3_blp8f"]
+[ext_resource type="Script" path="res://vehicle/controller/player_controller.gd" id="4_4472n"]
+[ext_resource type="PackedScene" uid="uid://cxksgrrg030xn" path="res://vehicle/body/car_body.tscn" id="5_4bbm5"]
+[ext_resource type="PackedScene" uid="uid://bg3g3fi7uftbh" path="res://misc/traffic/traffic.tscn" id="6_12h40"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Road" parent="." instance=ExtResource("1_gfh36")]
+
+[node name="MovementPath" parent="." instance=ExtResource("1_bnbuf")]
+
+[node name="Vehicle" parent="MovementPath" groups=["player"] instance=ExtResource("3_blp8f")]
+position = Vector2(319.998, 288.001)
+progress = 1019.65
+
+[node name="CarBody" parent="MovementPath/Vehicle/VehicleSteering/SteerAnchor" index="0" instance=ExtResource("5_4bbm5")]
+
+[node name="PlayerController" type="Node" parent="MovementPath/Vehicle" node_paths=PackedStringArray("vehicle_speed", "steering_path", "steer_anchor")]
+script = ExtResource("4_4472n")
+vehicle_speed = NodePath("../VehicleSpeed")
+steering_path = NodePath("../VehicleSteering")
+steer_anchor = NodePath("../VehicleSteering/SteerAnchor")
+
+[node name="Traffic" parent="." instance=ExtResource("6_12h40")]
+
+[editable path="MovementPath/Vehicle"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg3g3fi7uftbh"]
+
+[ext_resource type="PackedScene" uid="uid://bmo4fddp0ki45" path="res://misc/movement_path.tscn" id="1_mh7j2"]
+[ext_resource type="Script" path="res://misc/traffic/vehicle_spawner.gd" id="2_3jots"]
+[ext_resource type="Script" path="res://misc/traffic/vehicle_visibility_manager.gd" id="3_aipn4"]
+[ext_resource type="PackedScene" uid="uid://b7hiuk84b2in1" path="res://vehicle/vehicle.tscn" id="3_sy4vt"]
+[ext_resource type="Resource" uid="uid://dqu75m28d1jij" path="res://vehicle/data/database.tres" id="4_nrtwx"]
+
+[node name="Traffic" type="Node2D"]
+
+[node name="MovementPath" parent="." instance=ExtResource("1_mh7j2")]
+
+[node name="VehicleSpawner" type="Node" parent="." node_paths=PackedStringArray("movement_path")]
+script = ExtResource("2_3jots")
+vehicle_scene = ExtResource("3_sy4vt")
+vehicle_database = ExtResource("4_nrtwx")
+movement_path = NodePath("../MovementPath")
+
+[node name="VehicleVisibilityManager" type="Node" parent="."]
+script = ExtResource("3_aipn4")

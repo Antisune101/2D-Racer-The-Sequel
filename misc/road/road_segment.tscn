@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://pjn6845t0w02"]
+
+[ext_resource type="Script" path="res://misc/road/road_segment.gd" id="1_4dywe"]
+[ext_resource type="Texture2D" uid="uid://bb18q7aaa2rb4" path="res://assets/art/2D-Racer-Spritesheet.png" id="1_oqxyo"]
+
+[node name="road_segment" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_4dywe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oqxyo")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 576, 3584, 896)

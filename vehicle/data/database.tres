@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="VehicleDatabase" load_steps=9 format=3 uid="uid://dqu75m28d1jij"]
+
+[ext_resource type="PackedScene" uid="uid://cxksgrrg030xn" path="res://vehicle/body/car_body.tscn" id="1_yv7my"]
+[ext_resource type="Script" path="res://vehicle/data/vehicle_data.gd" id="2_vh4i7"]
+[ext_resource type="PackedScene" uid="uid://cv4mk6hcwaxaa" path="res://vehicle/body/truck_body.tscn" id="3_j0xhi"]
+[ext_resource type="PackedScene" uid="uid://bnhut2x45e7e5" path="res://vehicle/body/tonk_body.tscn" id="4_tepus"]
+[ext_resource type="Script" path="res://vehicle/data/vehicle_database.gd" id="5_siuhs"]
+
+[sub_resource type="Resource" id="Resource_t5jj2"]
+script = ExtResource("2_vh4i7")
+id = "car"
+speed = 500.0
+body = ExtResource("1_yv7my")
+
+[sub_resource type="Resource" id="Resource_x7ptb"]
+script = ExtResource("2_vh4i7")
+id = "truck"
+speed = 300.0
+body = ExtResource("3_j0xhi")
+
+[sub_resource type="Resource" id="Resource_77yqi"]
+script = ExtResource("2_vh4i7")
+id = "tonk"
+speed = 450.0
+body = ExtResource("4_tepus")
+
+[resource]
+script = ExtResource("5_siuhs")
+data = Array[ExtResource("2_vh4i7")]([SubResource("Resource_t5jj2"), SubResource("Resource_x7ptb"), SubResource("Resource_77yqi")])
