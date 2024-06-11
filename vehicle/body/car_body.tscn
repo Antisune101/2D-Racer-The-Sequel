@@ -1,12 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxksgrrg030xn"]
+[gd_scene load_steps=2 format=3 uid="uid://cxksgrrg030xn"]
 
 [ext_resource type="PackedScene" uid="uid://u6ghdskpk4bi" path="res://vehicle/body/vehicle_body.tscn" id="1_ao8ej"]
-[ext_resource type="Script" path="res://vehicle/body/vehicle_collider.gd" id="2_6vfpi"]
 
 [node name="CarBody" instance=ExtResource("1_ao8ej")]
 
-[node name="VehicleCollider" parent="." index="1"]
-script = ExtResource("2_6vfpi")
-
 [node name="CollisionPolygon2D" parent="VehicleCollider" index="0"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)
+
+[node name="FrontView" parent="VehicleDetection/Front" index="0"]
+position = Vector2(124, -62)
+
+[node name="FrontCollision" parent="VehicleDetection/Front" index="1"]
+position = Vector2(124, -62)
+
+[node name="FrontLeft" parent="VehicleDetection/Front" index="2"]
+position = Vector2(124, -62)
+
+[node name="FrontRight" parent="VehicleDetection/Front" index="3"]
+position = Vector2(184, -36)
+
+[node name="Left" parent="VehicleDetection/Sides" index="0"]
+position = Vector2(-60, -26)
+
+[node name="Right" parent="VehicleDetection/Sides" index="1"]
+position = Vector2(60, 26)
+
+[node name="RearLeft" parent="VehicleDetection/Sides" index="2"]
+position = Vector2(-184, 36)
+
+[node name="RearRight" parent="VehicleDetection/Sides" index="3"]
+position = Vector2(-64, 88)

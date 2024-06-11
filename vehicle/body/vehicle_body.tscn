@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://u6ghdskpk4bi"]
+[gd_scene load_steps=5 format=3 uid="uid://u6ghdskpk4bi"]
 
 [ext_resource type="Script" path="res://vehicle/body/vehicle_body.gd" id="1_eg4qo"]
 [ext_resource type="Texture2D" uid="uid://bb18q7aaa2rb4" path="res://assets/art/2D-Racer-Spritesheet.png" id="2_8uiv0"]
 [ext_resource type="Script" path="res://vehicle/body/vehicle_detection.gd" id="3_fc0a7"]
+[ext_resource type="Script" path="res://vehicle/body/vehicle_collider.gd" id="3_fuk3x"]
 
 [node name="VehicleBody" type="Node2D"]
 script = ExtResource("1_eg4qo")
@@ -14,7 +15,7 @@ region_enabled = true
 region_rect = Rect2(0, 68, 1288, 124)
 
 [node name="VehicleCollider" type="Area2D" parent="."]
-collision_mask = 0
+script = ExtResource("3_fuk3x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleCollider"]
 
@@ -33,21 +34,21 @@ rear_right = NodePath("Sides/RearRight")
 metadata/_edit_group_ = true
 
 [node name="FrontView" type="Area2D" parent="VehicleDetection/Front"]
-position = Vector2(124, -64)
+position = Vector2(124, -62)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Front/FrontView"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 208, -66, 152, -90)
 
 [node name="FrontCollision" type="Area2D" parent="VehicleDetection/Front"]
-position = Vector2(124, -64)
+position = Vector2(124, -62)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Front/FrontCollision"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 28, 24, -28, 0)
 
 [node name="FrontLeft" type="Area2D" parent="VehicleDetection/Front"]
-position = Vector2(124, -64)
+position = Vector2(124, -62)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Front/FrontLeft"]
@@ -55,7 +56,7 @@ position = Vector2(-60, -26)
 polygon = PackedVector2Array(-88, 30, -32, 54, 208, -66, 152, -90)
 
 [node name="FrontRight" type="Area2D" parent="VehicleDetection/Front"]
-position = Vector2(184, -38)
+position = Vector2(184, -36)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Front/FrontRight"]
@@ -64,28 +65,28 @@ polygon = PackedVector2Array(-88, 30, -32, 54, 208, -66, 152, -90)
 [node name="Sides" type="Node2D" parent="VehicleDetection"]
 
 [node name="Left" type="Area2D" parent="VehicleDetection/Sides"]
-position = Vector2(-60, -28)
+position = Vector2(-60, -26)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Sides/Left"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)
 
 [node name="Right" type="Area2D" parent="VehicleDetection/Sides"]
-position = Vector2(60, 24)
+position = Vector2(60, 26)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Sides/Right"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)
 
 [node name="RearLeft" type="Area2D" parent="VehicleDetection/Sides"]
-position = Vector2(-184, 34)
+position = Vector2(-184, 36)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Sides/RearLeft"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)
 
 [node name="RearRight" type="Area2D" parent="VehicleDetection/Sides"]
-position = Vector2(-64, 86)
+position = Vector2(-64, 88)
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VehicleDetection/Sides/RearRight"]

@@ -10,3 +10,12 @@ region_rect = Rect2(0, 284, 2632, 228)
 
 [node name="CollisionPolygon2D" parent="VehicleCollider" index="0"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 280, -102, 224, -126)
+
+[node name="Front" parent="VehicleDetection" index="0"]
+position = Vector2(192, -96)
+
+[node name="CollisionPolygon2D" parent="VehicleDetection/Sides/Left" index="0"]
+polygon = PackedVector2Array(-88, 30, -32, 54, 280, -102, 224, -126)
+
+[node name="CollisionPolygon2D" parent="VehicleDetection/Sides/Right" index="0"]
+polygon = PackedVector2Array(-88, 30, -32, 54, 280, -102, 224, -126)

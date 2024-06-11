@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcue4266g3rpl"]
+
+[ext_resource type="PackedScene" uid="uid://b7hiuk84b2in1" path="res://vehicle/vehicle.tscn" id="1_bi021"]
+[ext_resource type="Script" path="res://vehicle/player/player_vehicle.gd" id="2_xr8sx"]
+[ext_resource type="Script" path="res://vehicle/controller/player_controller.gd" id="4_wxvr7"]
+
+[node name="Player" groups=["player"] instance=ExtResource("1_bi021")]
+script = ExtResource("2_xr8sx")
+use_npc_controller = true
+
+[node name="PlayerController" type="Node" parent="." index="2" node_paths=PackedStringArray("parent_vehicle", "vehicle_speed", "steering_path", "steer_anchor")]
+script = ExtResource("4_wxvr7")
+parent_vehicle = NodePath("..")
+vehicle_speed = NodePath("../VehicleSpeed")
+steering_path = NodePath("../VehicleSteering")
+steer_anchor = NodePath("../VehicleSteering/SteerAnchor")

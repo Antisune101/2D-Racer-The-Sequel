@@ -9,7 +9,6 @@ class_name PlayerController
 @export var lane_assist_strength: float = 5
 
 
-var current_steer: float = 0.0
 var steer: float = 0.0
 @onready var max_steer_progress: float = steer_anchor.get_parent().curve.get_baked_length()
 
@@ -23,15 +22,15 @@ func disable() -> void:
 
 
 func _ready():
+	parent_vehicle.init_vehicle(Globals.vehicle_database.data.pick_random())
 	steer_anchor.progress_ratio = initial_steer
 
 
 func _physics_process(delta: float) -> void:
-	current_steer = steer_anchor.progress_ratio
 	var input = Input.get_axis("steer_left", "steer_right")
 
 	if input != 0.0: steer = input
-	elif abs_steer() <= lane_assist_max_steer and not current_steer in [0.0, 0.5, 1.0]:
+	elif abs_steer() <= lane_assist_max_steer and not parent_vehicle.get_current_steer() in [0.0, 0.5, 1.0]:
 		lane_assist(delta)
 	
 	if steer == 0.0: return 
@@ -43,12 +42,7 @@ func _physics_process(delta: float) -> void:
 
 
 func lane_assist(delta: float) -> void:
-	steer_anchor.progress = lerp(steer_anchor.progress, max_steer_progress * get_steer_snap(), 1 - pow(.5, lane_assist_strength * delta))
-
-
-func get_steer_snap() -> float:
-	if current_steer < .75 and current_steer > 0.25: return 0.5
-	return 1.0 if current_steer > 0.75 else 0.0 
+	steer_anchor.progress = lerp(steer_anchor.progress, max_steer_progress * parent_vehicle.get_nearest_lane(), 1 - pow(.5, lane_assist_strength * delta)) 
 
 
 func abs_steer() -> float: return absf(steer)

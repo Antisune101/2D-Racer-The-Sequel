@@ -5,7 +5,9 @@ signal speed_updated
 
 
 var default_speed: float = 0.0:
-	set(new_default_speed): if speed == 0.0: speed = new_default_speed
+	set(new_default_speed):
+		if speed == 0.0: speed = new_default_speed
+		default_speed = new_default_speed
 
 
 var speed: float = 0.0:
@@ -24,4 +26,4 @@ func _ready() -> void: if is_player: set_physics_process(false)
 
 
 # Move vehicle relative to 'player' speed
-func _physics_process(delta: float) -> void: parent.progress_ratio += (Player.player_speed - speed) * delta
+func _physics_process(delta: float) -> void: parent.progress += (Player.player_speed - speed) * delta
