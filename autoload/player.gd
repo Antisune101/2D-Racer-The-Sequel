@@ -3,6 +3,8 @@ extends Node
 
 signal player_speed_updated
 
+const player_starting_pos: float = 0.55 
+
 
 var player_speed: float = 0.0:
 	set(new_speed):
