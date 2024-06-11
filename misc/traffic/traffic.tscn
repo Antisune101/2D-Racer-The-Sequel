@@ -16,5 +16,6 @@ vehicle_scene = ExtResource("3_sy4vt")
 vehicle_database = ExtResource("4_nrtwx")
 movement_path = NodePath("../MovementPath")
 
-[node name="VehicleVisibilityManager" type="Node" parent="."]
+[node name="VehicleVisibilityManager" type="Node" parent="." node_paths=PackedStringArray("movement_path")]
 script = ExtResource("3_aipn4")
+movement_path = NodePath("../MovementPath")
