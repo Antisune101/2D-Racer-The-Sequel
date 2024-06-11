@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://vehicle/controller/player_controller.gd" id="4_wxvr7"]
 
 [node name="Player" groups=["player"] instance=ExtResource("1_bi021")]
+editor_description = "The player vehicle. Use use_npc_controller to toggle whether or not player inputs affect vehicle"
 script = ExtResource("2_xr8sx")
 use_npc_controller = true
 

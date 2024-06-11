@@ -25,7 +25,6 @@ func _physics_process(_delta: float):
 	elif !vehicle_detection.is_view_clear() && is_faster_than(vehicle_detection.get_vehicle_in_view().parent_speed):
 		get_target_steer()
 		is_overtaking = true
-	print(vehicle_detection.is_view_clear() if vehicle_detection.is_view_clear() else "I see you %s" %  is_faster_than(vehicle_detection.get_vehicle_in_view().parent_speed))
 
 
 func try_overtake() -> void:

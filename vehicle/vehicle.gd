@@ -7,6 +7,8 @@ class_name Vehicle
 @export var npc_controller: NPC_Controller
 
 
+
+
 var body: VehicleBody = null
 
 func init_vehicle(vehicle_data: VehicleData) -> void:

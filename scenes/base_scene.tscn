@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b057vsdgbrsbr"]
+
+[ext_resource type="PackedScene" uid="uid://c6diigt41pq5e" path="res://ui/ui.tscn" id="1_a6d27"]
+[ext_resource type="PackedScene" uid="uid://d3wmsrrxktmkx" path="res://misc/road/road.tscn" id="2_lt5lj"]
+[ext_resource type="PackedScene" uid="uid://bg3g3fi7uftbh" path="res://misc/traffic/traffic.tscn" id="3_omqyc"]
+[ext_resource type="PackedScene" uid="uid://bcue4266g3rpl" path="res://vehicle/player/player_vehicle.tscn" id="4_62wne"]
+
+[node name="BaseScene" type="Node2D"]
+editor_description = "The scene that "
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="UI" node_paths=PackedStringArray("starting_menu") instance=ExtResource("1_a6d27")]
+starting_menu = NodePath("")
+
+[node name="Road" parent="." instance=ExtResource("2_lt5lj")]
+
+[node name="Traffic" parent="." instance=ExtResource("3_omqyc")]
+
+[node name="Player" parent="Traffic/MovementPath" index="0" instance=ExtResource("4_62wne")]
+position = Vector2(228.802, 333.599)
+progress = 1121.61
+use_npc_controller = false
+
+[editable path="Traffic"]

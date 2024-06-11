@@ -2,8 +2,17 @@
 extends Node
 
 signal player_speed_updated
+signal player_color_updated(new_color: int)
 
-const player_starting_pos: float = 0.55 
+const npc_pos: float = 0.59
+const starting_pos: float = 0.56
+
+
+@onready var vehicle_data = Globals.vehicle_database.data[0]
+@onready var player_color: int = Globals.CAR_COLORS.WHITE:
+	set(new_color):
+		player_color = new_color
+		player_color_updated.emit(new_color)
 
 
 var player_speed: float = 0.0:

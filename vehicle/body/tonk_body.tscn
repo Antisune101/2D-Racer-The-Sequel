@@ -9,3 +9,6 @@ region_rect = Rect2(1344, 68, 1316, 124)
 
 [node name="CollisionPolygon2D" parent="VehicleCollider" index="0"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)
+
+[node name="VehicleDetection" parent="." index="2"]
+visible = false

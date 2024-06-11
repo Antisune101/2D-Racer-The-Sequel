@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://uvyq3bq3v0m2"]
+
+[ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_2cjdk"]
+[ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_d73b0"]
+[ext_resource type="Script" path="res://ui/buttons/ui_change_scene_btn.gd" id="3_7f8ny"]
+[ext_resource type="Script" path="res://ui/buttons/ui_switch_menu_btn.gd" id="4_bkuiu"]
+[ext_resource type="Script" path="res://ui/buttons/ui_exit_btn.gd" id="5_viewp"]
+[ext_resource type="Script" path="res://ui/buttons/ui_color_btn.gd" id="6_431ye"]
+
+[node name="TitleScreen" instance=ExtResource("1_2cjdk")]
+
+[node name="UI" parent="UI" index="0" node_paths=PackedStringArray("starting_menu")]
+starting_menu = NodePath("CenteredMenus/MainMenu")
+
+[node name="MainMenu" parent="UI/UI/CenteredMenus" index="0" instance=ExtResource("2_d73b0")]
+visible = false
+layout_mode = 2
+
+[node name="UIChangeSceneBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("3_7f8ny")
+
+[node name="UISwitchMenuBtn2" type="Label" parent="UI/UI/CenteredMenus/MainMenu/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Customize"
+script = ExtResource("4_bkuiu")
+target_menu = NodePath("../../../../Customization")
+
+[node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/VBoxContainer/Buttons" index="2"]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("4_bkuiu")
+
+[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/VBoxContainer/Buttons" index="3"]
+layout_mode = 2
+text = "Exit"
+script = ExtResource("5_viewp")
+
+[node name="Customization" parent="UI/UI/CenteredMenus" index="1" instance=ExtResource("2_d73b0")]
+layout_mode = 2
+
+[node name="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer" index="0"]
+text = "Customize"
+
+[node name="UIColorBtn" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Red"
+script = ExtResource("6_431ye")
+
+[node name="UIColorBtn2" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="1"]
+layout_mode = 2
+text = "Orange"
+script = ExtResource("6_431ye")
+btn_color = 1
+
+[node name="UIColorBtn3" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="2"]
+layout_mode = 2
+text = "Green"
+script = ExtResource("6_431ye")
+btn_color = 2
+
+[node name="UIColorBtn4" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="3"]
+layout_mode = 2
+text = "Blue"
+script = ExtResource("6_431ye")
+btn_color = 3
+
+[node name="UIColorBtn5" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="4"]
+layout_mode = 2
+text = "Purple"
+script = ExtResource("6_431ye")
+btn_color = 4
+
+[node name="UIColorBtn6" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="5"]
+layout_mode = 2
+text = "White"
+script = ExtResource("6_431ye")
+btn_color = 5
+
+[node name="UIColorBtn7" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="6"]
+layout_mode = 2
+text = "Black"
+script = ExtResource("6_431ye")
+btn_color = 6
+
+[node name="BackBtn" type="Label" parent="UI/UI/CenteredMenus/Customization/VBoxContainer/Buttons" index="7" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Back"
+script = ExtResource("4_bkuiu")
+target_menu = NodePath("../../../../MainMenu")
+
+[node name="Player" parent="Traffic/MovementPath" index="0"]
+position = Vector2(183.201, 356.4)
+progress = 1172.59
+use_npc_controller = true
+
+[editable path="UI/UI"]
+[editable path="UI/UI/CenteredMenus/MainMenu"]
+[editable path="UI/UI/CenteredMenus/Customization"]
+[editable path="Traffic"]

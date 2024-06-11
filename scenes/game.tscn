@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk2aghiimgl5i"]
+
+[ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_l8b2v"]
+
+[node name="Game" instance=ExtResource("1_l8b2v")]
+
+[node name="Player" parent="Traffic/MovementPath" index="0"]
+position = Vector2(228.802, 333.599)
+
+[editable path="Traffic"]

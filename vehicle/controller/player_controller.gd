@@ -1,6 +1,6 @@
 extends VehicleController
 class_name PlayerController
-
+# TODO: Properly combine boost script with this
 @export_category("Steering")
 @export_range(0.0, 1.0) var initial_steer: float = 0.5
 @export var steer_speed: float = 250.0
@@ -22,7 +22,7 @@ func disable() -> void:
 
 
 func _ready():
-	parent_vehicle.init_vehicle(Globals.vehicle_database.data.pick_random())
+	parent_vehicle.init_vehicle(Player.vehicle_data)
 	steer_anchor.progress_ratio = initial_steer
 
 
@@ -47,6 +47,8 @@ func lane_assist(delta: float) -> void:
 
 func abs_steer() -> float: return absf(steer)
 
+
+#TODO: Fix braking
 
 @export_category("Boost & Brake")
 @export var boost_distance: float = 50.0
