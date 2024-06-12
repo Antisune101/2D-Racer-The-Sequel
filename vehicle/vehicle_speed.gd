@@ -27,3 +27,7 @@ func _ready() -> void: if is_player: set_physics_process(false)
 
 # Move vehicle relative to 'player' speed
 func _physics_process(delta: float) -> void: parent.progress += (Player.player_speed - speed) * delta
+
+
+
+func is_faster_than(other_speed: VehicleSpeed) -> bool: return speed > other_speed.speed

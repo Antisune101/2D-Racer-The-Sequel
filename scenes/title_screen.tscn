@@ -91,7 +91,7 @@ script = ExtResource("4_bkuiu")
 target_menu = NodePath("../../../../MainMenu")
 
 [node name="Player" parent="Traffic/MovementPath" index="0"]
-position = Vector2(183.201, 356.4)
+position = Vector2(183.204, 356.398)
 progress = 1172.59
 use_npc_controller = true
 

@@ -35,11 +35,14 @@ movie_writer/movie_file="/home/antisune/Documents/Godot/Racer/video.avi"
 folder_colors={
 "res://assets/": "purple",
 "res://autoload/": "red",
+"res://misc/": "yellow",
 "res://misc/road/": "yellow",
+"res://scenes/": "blue",
 "res://ui/": "green",
+"res://vehicle/": "yellow",
 "res://vehicle/body/": "yellow",
-"res://vehicle/controller/": "blue",
 "res://vehicle/data/": "gray",
+"res://vehicle/npc/": "yellow",
 "res://vehicle/player/": "blue"
 }
 
@@ -110,6 +113,7 @@ boost={
 [layer_names]
 
 2d_physics/layer_1="Vehicle"
+2d_physics/layer_2="Player"
 
 [rendering]
 

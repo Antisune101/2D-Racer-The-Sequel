@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7hiuk84b2in1" path="res://vehicle/vehicle.tscn" id="1_bi021"]
 [ext_resource type="Script" path="res://vehicle/player/player_vehicle.gd" id="2_xr8sx"]
-[ext_resource type="Script" path="res://vehicle/controller/player_controller.gd" id="4_wxvr7"]
+[ext_resource type="Script" path="res://vehicle/player/player_controller.gd" id="4_wxvr7"]
 
 [node name="Player" groups=["player"] instance=ExtResource("1_bi021")]
 editor_description = "The player vehicle. Use use_npc_controller to toggle whether or not player inputs affect vehicle"

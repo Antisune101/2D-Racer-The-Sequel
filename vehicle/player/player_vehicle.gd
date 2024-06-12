@@ -7,6 +7,7 @@ class_name PlayerVehicle
 
 func _ready() -> void:
 	body.set_color(Player.player_color)
+	body.collider.make_player()
 	Player.player_color_updated.connect(body.set_color)
 	
 	if use_npc_controller:

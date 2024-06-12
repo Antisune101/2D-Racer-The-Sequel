@@ -13,16 +13,8 @@ var steer: float = 0.0
 @onready var max_steer_progress: float = steer_anchor.get_parent().curve.get_baked_length()
 
 
-func enable() -> void:
-	set_physics_process(true)
-
-
-func disable() -> void:
-	set_physics_process(false)
-
-
 func _ready():
-	parent_vehicle.init_vehicle(Player.vehicle_data)
+	parent_vehicle.init_vehicle(Player.vehicle_data, 0.5)
 	steer_anchor.progress_ratio = initial_steer
 
 

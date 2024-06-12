@@ -14,3 +14,8 @@ enum CAR_COLORS {
 }
 
 var vehicle_database: VehicleDatabase = preload("res://vehicle/data/database.tres")
+
+func get_vehicle_data_from_id(id: String) -> VehicleData:
+	for vehicle: VehicleData in vehicle_database.data:
+		if vehicle.id == id: return vehicle
+	return null

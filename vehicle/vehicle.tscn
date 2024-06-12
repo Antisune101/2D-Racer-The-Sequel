@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7hiuk84b2in1"]
+[gd_scene load_steps=6 format=3 uid="uid://b7hiuk84b2in1"]
 
 [ext_resource type="Script" path="res://vehicle/vehicle.gd" id="1_vxku7"]
 [ext_resource type="Script" path="res://vehicle/vehicle_speed.gd" id="2_8y78p"]
-[ext_resource type="Script" path="res://vehicle/controller/npc_controller.gd" id="3_exdva"]
+[ext_resource type="Script" path="res://vehicle/npc/npc_controller.gd" id="3_exdva"]
+[ext_resource type="PackedScene" uid="uid://cgwd1lrbneand" path="res://vehicle/npc/vehicle_detection.tscn" id="4_bqlgd"]
 
 [sub_resource type="Curve2D" id="Curve2D_6tdxm"]
 _data = {
@@ -10,13 +11,14 @@ _data = {
 }
 point_count = 2
 
-[node name="Vehicle" type="PathFollow2D" node_paths=PackedStringArray("vehicle_speed", "steer_anchor", "npc_controller")]
+[node name="Vehicle" type="PathFollow2D" node_paths=PackedStringArray("vehicle_speed", "steer_anchor", "npc_controller", "vehicle_detection")]
 rotates = false
 loop = false
 script = ExtResource("1_vxku7")
 vehicle_speed = NodePath("VehicleSpeed")
 steer_anchor = NodePath("VehicleSteering/SteerAnchor")
 npc_controller = NodePath("NPC_Controller")
+vehicle_detection = NodePath("VehicleDetection")
 
 [node name="VehicleSpeed" type="Node" parent="."]
 script = ExtResource("2_8y78p")
@@ -29,9 +31,12 @@ position = Vector2(-100, -56)
 rotates = false
 loop = false
 
-[node name="NPC_Controller" type="Node" parent="." node_paths=PackedStringArray("parent_vehicle", "vehicle_speed", "steering_path", "steer_anchor")]
+[node name="NPC_Controller" type="Node" parent="." node_paths=PackedStringArray("parent_vehicle", "vehicle_speed", "steering_path", "steer_anchor", "vehicle_detection")]
 script = ExtResource("3_exdva")
 parent_vehicle = NodePath("..")
 vehicle_speed = NodePath("../VehicleSpeed")
 steering_path = NodePath("../VehicleSteering")
 steer_anchor = NodePath("../VehicleSteering/SteerAnchor")
+vehicle_detection = NodePath("../VehicleDetection")
+
+[node name="VehicleDetection" parent="." instance=ExtResource("4_bqlgd")]

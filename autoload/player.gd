@@ -8,7 +8,12 @@ const npc_pos: float = 0.59
 const starting_pos: float = 0.56
 
 
-@onready var vehicle_data = Globals.vehicle_database.data[0]
+@onready var vehicle_data = Globals.vehicle_database.data[0].duplicate(true)
+
+func _ready() -> void:
+	vehicle_data.speed = 600.0
+
+
 @onready var player_color: int = Globals.CAR_COLORS.WHITE:
 	set(new_color):
 		player_color = new_color

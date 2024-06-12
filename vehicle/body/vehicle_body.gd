@@ -2,8 +2,12 @@ extends Node2D
 class_name VehicleBody
 
 
-@onready var vehicle_detection: VehicleDetection = $VehicleDetection
 @onready var sprite: Sprite2D = $VehicleSprite
+@onready var collider: VehicleCollider = $VehicleCollider
+
+@onready var front_marker: Marker2D = $Front
+@onready var rear_marker: Marker2D = $Rear
+
 
 var parent: Vehicle
 
