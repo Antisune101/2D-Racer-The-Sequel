@@ -16,3 +16,5 @@ func _ready() -> void:
 	else:
 		progress_ratio = Player.starting_pos
 		$NPC_Controller.queue_free()
+		$VehicleDetection.queue_free()
+		$VehicleSteering/SteerAnchor/CollisionAvoidance.queue_free()
