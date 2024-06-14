@@ -1,6 +1,6 @@
 extends VehicleController
 class_name PlayerController
-# TODO: Properly combine boost script with this
+
 @export_category("Steering")
 @export_range(0.0, 1.0) var initial_steer: float = 0.5
 @export var steer_speed: float = 250.0
@@ -8,9 +8,24 @@ class_name PlayerController
 @export var lane_assist_max_steer: float = 0.2
 @export var lane_assist_strength: float = 5
 
+@export_category("Speed Modifiers")
+@export var reset_time: float = 0.75
+#Boost
+@export var boost_amount: float = 150.0
+@export var boost_distance: float = 50.0
+@export var boost_start_time: float = 1.25
+#Brake
+@export var brake_amount: float = 250.0
+@export var brake_distance: float = 50.0
+@export var brake_start_time: float = 1.25
 
 var steer: float = 0.0
+var is_boosting: bool = false
+var anim_tween: Tween = null
+
+
 @onready var max_steer_progress: float = steer_anchor.get_parent().curve.get_baked_length()
+@onready var starting_position: float = get_parent().progress
 
 
 func _ready():
@@ -40,53 +55,25 @@ func lane_assist(delta: float) -> void:
 func abs_steer() -> float: return absf(steer)
 
 
-#TODO: Fix braking
-
-@export_category("Boost & Brake")
-@export var boost_distance: float = 50.0
-@export var boost_speed: float = 600
-@export var boost_start_time: float = 1.25
-@export var boost_stop_time: float = 1.5
-
-
-var is_boosting: bool = false
-var boost_tween: Tween = null
-
-
-# TODO: Use boost amount instead of final boost value.
-# This will make this variable redundant and possibly simplify code.
-@onready var boost_amount: float = boost_speed - vehicle_speed.default_speed
-@onready var parent = get_parent()
-@onready var starting_position: float = get_parent().progress
-
-
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("boost") && !is_boosting: toggle_boost(true)
-	elif event.is_action_released("boost") && is_boosting: toggle_boost(false)
-	
-	if event.is_action_pressed("brake") && !is_boosting:
-		if boost_tween: boost_tween.kill()
-		vehicle_speed.speed = 300
-	if event.is_action_released("brake") && !is_boosting: vehicle_speed.speed = vehicle_speed.default_speed
+	if event.is_action_pressed("boost"): animate_speed_modifier(boost_amount, boost_distance, boost_start_time)
+	if event.is_action_pressed("brake"): animate_speed_modifier(-brake_amount, -brake_distance, brake_start_time)
+	if event.is_action_released("boost") || event.is_action_released("brake"): reset_speed_modifier()
 
 
-func toggle_boost(should_boost: bool) -> void:
-	is_boosting = should_boost
-	if boost_tween: boost_tween.kill()
-	boost_tween = create_tween().set_parallel(true)
-	
-	var anim_time: float
-	var current_boost: float = vehicle_speed.speed - vehicle_speed.default_speed
+func reset_speed_modifier() -> void:
+	animate_speed_modifier(-(vehicle_speed.speed - vehicle_speed.default_speed), 0, reset_time)
 
-	#Way too much math to find the right amount of time
-	if is_boosting:
-		anim_time = boost_start_time if  current_boost == 0.0 else boost_start_time * ( 1.0 - (current_boost / boost_amount))
-	else:
-		anim_time = boost_stop_time if current_boost == boost_amount else boost_stop_time * (current_boost  / boost_amount)
+
+func animate_speed_modifier(modifier: float, distance: float,  duration: float) -> void:
+	if anim_tween: anim_tween.kill()
+	anim_tween = create_tween().set_parallel(true)
 	
+	var current_modifier: float = vehicle_speed.speed - vehicle_speed.default_speed
+	#Much less math to find the right time :)
+	var anim_time: float = duration * (1 - (current_modifier/modifier))
+	var final_pos: float = starting_position - distance
+	var final_speed: float = vehicle_speed.default_speed + modifier
 	
-	var final_boost: float = starting_position-boost_distance if is_boosting else starting_position
-	var final_speed: float = boost_speed if is_boosting else vehicle_speed.default_speed
-	
-	boost_tween.tween_property(parent, "progress", final_boost, anim_time)
-	boost_tween.tween_property(vehicle_speed, "speed", final_speed, anim_time)
+	anim_tween.tween_property(parent_vehicle, "progress", final_pos, anim_time)
+	anim_tween.tween_property(vehicle_speed, "speed", final_speed, anim_time)
