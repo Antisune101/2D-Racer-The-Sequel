@@ -11,4 +11,4 @@ script = ExtResource("1_4dywe")
 texture = ExtResource("1_oqxyo")
 hframes = 2
 region_enabled = true
-region_rect = Rect2(0, 576, 3584, 896)
+region_rect = Rect2(0, 572, 3856, 964)

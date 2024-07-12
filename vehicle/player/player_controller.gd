@@ -29,6 +29,7 @@ var anim_tween: Tween = null
 
 
 func _ready():
+	Player.player_controller = self
 	parent_vehicle.init_vehicle(Player.vehicle_data, 0.5)
 	steer_anchor.progress_ratio = initial_steer
 
@@ -58,22 +59,21 @@ func abs_steer() -> float: return absf(steer)
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("boost"): animate_speed_modifier(boost_amount, boost_distance, boost_start_time)
 	if event.is_action_pressed("brake"): animate_speed_modifier(-brake_amount, -brake_distance, brake_start_time)
-	if event.is_action_released("boost") || event.is_action_released("brake"): reset_speed_modifier()
+	if event.is_action_released("boost") || event.is_action_released("brake"): animate_speed_modifier(-current_speed_modifier(), 0, reset_time, true)
 
 
-func reset_speed_modifier() -> void:
-	animate_speed_modifier(-(vehicle_speed.speed - vehicle_speed.default_speed), 0, reset_time)
-
-
-func animate_speed_modifier(modifier: float, distance: float,  duration: float) -> void:
+func animate_speed_modifier(modifier: float, distance: float,  duration: float, reset: bool = false) -> void:
 	if anim_tween: anim_tween.kill()
 	anim_tween = create_tween().set_parallel(true)
 	
-	var current_modifier: float = vehicle_speed.speed - vehicle_speed.default_speed
+
 	#Much less math to find the right time :)
-	var anim_time: float = duration * (1 - (current_modifier/modifier))
+	var anim_time: float = duration * (1 - (current_speed_modifier() / modifier))
 	var final_pos: float = starting_position - distance
-	var final_speed: float = vehicle_speed.default_speed + modifier
+	var final_speed: float = vehicle_speed.default_speed + modifier if !reset else vehicle_speed.default_speed
 	
 	anim_tween.tween_property(parent_vehicle, "progress", final_pos, anim_time)
 	anim_tween.tween_property(vehicle_speed, "speed", final_speed, anim_time)
+
+
+func current_speed_modifier() -> float: return vehicle_speed.speed - vehicle_speed.default_speed

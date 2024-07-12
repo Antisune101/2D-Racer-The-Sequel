@@ -20,8 +20,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_select"):
 		var menu_item = get_menu_item_at_index(menu_index)
-		if menu_item != null: menu_item.select()
-	
+		if menu_item != null:
+			menu_item.select()
+			SoundManager.play_ui_select()
 	
 	var input: int = 0
 	if Input.is_action_just_pressed("ui_up"): input -= 1
@@ -34,8 +35,16 @@ func _physics_process(_delta: float) -> void:
 	
 	if new_index > menu_parent.get_child_count() - 1: new_index = 0
 	elif new_index < 0: new_index = menu_parent.get_child_count() - 1
+	set_cursor_from_index(new_index, menu_index)
 	menu_index = new_index
-	set_cursor_from_index(menu_index)
+	SoundManager.play_ui_click()
+	
+
+func _input(event: InputEvent) -> void:
+	if !visible: return
+	if event.is_action_pressed("ui_cancel"):
+		Globals.goto_prev_menu.emit()
+		SoundManager.play_ui_select()
 
 
 func switch_to_menu(new_parent: UIMenu) -> void:
@@ -53,16 +62,20 @@ func switch_to_menu(new_parent: UIMenu) -> void:
 	set_cursor_from_index(menu_index)
 
 
-func set_cursor_from_index(index: int) -> void:
+func set_cursor_from_index(index: int, prev_index: int = -1) -> void:
 	var menu_item = get_menu_item_at_index(index)
 	
 	if menu_item == null: return
+	
+	
+	if prev_index != -1: get_menu_item_at_index(prev_index).unhover()
+	
+	menu_item.hover()
 	
 	var item_pos = menu_item.global_position
 	var item_size = menu_item.get_rect().size
 
 	global_position = Vector2(item_pos.x, item_pos.y + item_size.y / 2.0) - (get_rect().size / 2.0)
-
 
 # NOTE: I really like ternary operators :)
 func get_menu_item_at_index(index: int) -> Control: return null if menu_parent == null else menu_parent.get_child(index)

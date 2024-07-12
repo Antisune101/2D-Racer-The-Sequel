@@ -5,7 +5,7 @@ extends Node2D
 @export var pause: float
 
 
-var is_title_screen: bool = true
+var current_scene: String = "main_menu"
 var is_transitioning: bool = false
 
 
@@ -13,24 +13,34 @@ var is_transitioning: bool = false
 @onready var cover_width: float = cover.size.x
 
 
+const SCENES: Dictionary = {
+	"main_menu": "res://scenes/title_screen.tscn",
+	"game": "res://scenes/game.tscn",
+	"debug": "res://scenes/debug_game.tscn"
+}
+
+
 func _ready() -> void:
 	cover.position.x = -cover_width
 
 
-func change_scene() -> void:
-	if is_transitioning: return
-	
+func change_scene(new_scene: String) -> void:
+	current_scene = new_scene
+	transition_to_scene(new_scene)
+
+
+
+
+func reload_scene() -> void:
+	transition_to_scene(current_scene)
+
+func transition_to_scene(new_scene: String) -> void:
 	is_transitioning = true
-	
-	var new_scene = "res://scenes/game.tscn" if is_title_screen else "res://scenes/title_screen.tscn"
-	is_title_screen = !is_title_screen
-	
+
 	await cover_screen()
-	get_tree().change_scene_to_file(new_scene)
+	get_tree().change_scene_to_file(SCENES[new_scene])
 	show_screen()
 	is_transitioning = false
-
-func reload_scene() -> void: get_tree().reload_current_scene()
 
 
 func cover_screen() -> void:

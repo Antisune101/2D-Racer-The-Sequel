@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn2db17smb8fn"]
+[gd_scene load_steps=3 format=3 uid="uid://cn2db17smb8fn"]
 
 [ext_resource type="Script" path="res://ui/ui_menu.gd" id="1_e8s7c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fefdv"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.862745)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="UIMenu" type="Control"]
 layout_mode = 3
@@ -11,20 +23,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e8s7c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -16.0
+offset_top = -20.0
 offset_right = 240.0
-offset_bottom = 16.0
+offset_bottom = 20.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fefdv")
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Menu Title"
 
-[node name="Buttons" type="VBoxContainer" parent="VBoxContainer" groups=["button_container"]]
+[node name="Buttons" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" groups=["button_container"]]
 layout_mode = 2

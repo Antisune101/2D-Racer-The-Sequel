@@ -9,8 +9,17 @@ editor_description = "The player vehicle. Use use_npc_controller to toggle wheth
 script = ExtResource("2_xr8sx")
 use_npc_controller = true
 
+[node name="SteerAnchor" parent="VehicleSteering" index="0"]
+position = Vector2(-4.00023, -8.00012)
+
 [node name="PlayerController" type="Node" parent="." index="2" node_paths=PackedStringArray("parent_vehicle", "vehicle_speed", "steering_path", "steer_anchor")]
 script = ExtResource("4_wxvr7")
+steer_speed = 350.0
+steer_reset_force = 4.5
+lane_assist_max_steer = 0.3
+boost_start_time = 1.0
+brake_amount = 200.0
+brake_start_time = 0.5
 parent_vehicle = NodePath("..")
 vehicle_speed = NodePath("../VehicleSpeed")
 steering_path = NodePath("../VehicleSteering")

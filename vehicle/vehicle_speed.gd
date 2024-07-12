@@ -22,8 +22,10 @@ var speed: float = 0.0:
 
 
 # Disable _physics_process if vehicle is the 'player'
-func _ready() -> void: if is_player: set_physics_process(false)
-
+func _ready() -> void:
+	if is_player:
+		set_physics_process(false)
+		Player.player_vehicle_speed = self
 
 # Move vehicle relative to 'player' speed
 func _physics_process(delta: float) -> void: parent.progress += (Player.player_speed - speed) * delta

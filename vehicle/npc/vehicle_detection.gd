@@ -2,6 +2,9 @@ extends Node2D
 class_name VehicleDetection
 
 
+@export var detection_offset: Vector2 = Vector2(8, 4)
+
+
 @onready var front: Node2D = $Front
 @onready var side: Node2D = $Side
 @onready var rear: Node2D = $Rear
@@ -13,15 +16,15 @@ class_name VehicleDetection
 
 
 func init_from_body(body: VehicleBody) -> void:
-	front.position = body.front_marker.position
+	rear.global_position = body.rear_marker.global_position + Vector2(-detection_offset.x, detection_offset.y)
+	side.global_position = body.rear_marker.global_position
+	front.global_position = body.front_marker.global_position + Vector2(detection_offset.x, -detection_offset.y)
 	
 	var distance: Vector2 = body.front_marker.position - body.rear_marker.position
 	
 	for polygon in get_side_polygons():
 		polygon.polygon[1] = distance + polygon.polygon[0]
 		polygon.polygon[2] = distance + polygon.polygon[3]
-	
-	print(distance)
 
 
 func get_lane_areas(parent_node: Node2D) -> Array[Area2D]:
@@ -49,8 +52,9 @@ func can_turn_left(current_lane: int) -> bool:
 
 func can_turn_right(current_lane: int) -> bool:
 	var right = current_lane + 1
+	
 	if right > 2: return false
-	return side_lanes[right].has_overlapping_areas() && !rear_lanes[right].has_overlapping_areas()
+	return !side_lanes[right].has_overlapping_areas() && !rear_lanes[right].has_overlapping_areas()
 
 
 

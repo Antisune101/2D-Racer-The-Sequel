@@ -10,16 +10,18 @@ editor_description = "The scene that "
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="UI" node_paths=PackedStringArray("starting_menu") instance=ExtResource("1_a6d27")]
-starting_menu = NodePath("")
+[node name="UI" parent="UI" instance=ExtResource("1_a6d27")]
 
 [node name="Road" parent="." instance=ExtResource("2_lt5lj")]
 
 [node name="Traffic" parent="." instance=ExtResource("3_omqyc")]
 
 [node name="Player" parent="Traffic/MovementPath" index="0" instance=ExtResource("4_62wne")]
-position = Vector2(228.802, 333.599)
-progress = 1121.61
+position = Vector2(210.565, 342.717)
+progress = 1142.0
 use_npc_controller = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(320, 288)
 
 [editable path="Traffic"]

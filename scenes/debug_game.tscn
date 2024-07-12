@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7pi75854fqmf"]
+
+[ext_resource type="PackedScene" uid="uid://bk2aghiimgl5i" path="res://scenes/game.tscn" id="1_u0d1t"]
+[ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_dy0t7"]
+[ext_resource type="Script" path="res://misc/debug/debug_speed_controls.gd" id="3_iirvt"]
+
+[node name="DebugGame" instance=ExtResource("1_u0d1t")]
+
+[node name="UI" parent="UI" index="0" node_paths=PackedStringArray("starting_menu")]
+starting_menu = NodePath("UncenteredMenus/Debug")
+
+[node name="InGame" parent="UI/UI/UncenteredMenus" index="0"]
+visible = false
+
+[node name="GameOver" parent="UI/UI/UncenteredMenus" index="1"]
+visible = false
+
+[node name="Debug" parent="UI/UI/UncenteredMenus" index="2" instance=ExtResource("2_dy0t7")]
+layout_mode = 1
+
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/Debug" index="0"]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/UncenteredMenus/Debug" index="1" node_paths=PackedStringArray("speed_edit", "boost_edit", "brake_edit", "update_btn", "return_btn")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 139.0
+script = ExtResource("3_iirvt")
+speed_edit = NodePath("HBoxContainer/SpeedEdit")
+boost_edit = NodePath("HBoxContainer2/BoostEdit")
+brake_edit = NodePath("HBoxContainer3/BrakeEdit")
+update_btn = NodePath("UpdateBtn")
+return_btn = NodePath("ReturnBtn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedEdit" type="SpinBox" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer" index="1"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 10000.0
+custom_arrow_step = 5.0
+select_all_on_focus = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="BoostLabel" type="Label" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer2" index="0"]
+layout_mode = 2
+text = "Boost"
+
+[node name="BoostEdit" type="SpinBox" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer2" index="1"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 10000.0
+custom_arrow_step = 5.0
+select_all_on_focus = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="BrakeLabel" type="Label" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer3" index="0"]
+layout_mode = 2
+text = "Brake"
+
+[node name="BrakeEdit" type="SpinBox" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer/HBoxContainer3" index="1"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+max_value = 10000.0
+custom_arrow_step = 5.0
+select_all_on_focus = true
+
+[node name="UpdateBtn" type="Button" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer" index="3"]
+layout_mode = 2
+text = "Submit"
+
+[node name="ReturnBtn" type="Button" parent="UI/UI/UncenteredMenus/Debug/VBoxContainer" index="4"]
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="Player" parent="Traffic/MovementPath" index="0"]
+position = Vector2(210.565, 342.717)
+
+[editable path="UI/UI"]
+[editable path="UI/UI/UncenteredMenus/InGame"]
+[editable path="UI/UI/UncenteredMenus/GameOver"]
+[editable path="UI/UI/UncenteredMenus/Debug"]
+[editable path="Traffic"]

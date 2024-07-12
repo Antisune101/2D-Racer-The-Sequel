@@ -1,7 +1,7 @@
 extends Control
 class_name UIMenu
 
-@onready var buttons: Control = $VBoxContainer/Buttons
+@onready var buttons: Control = $PanelContainer/MarginContainer/VBoxContainer/Buttons
 
 
 func show_menu() -> void: visible = true

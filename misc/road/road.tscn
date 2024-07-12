@@ -1,17 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3wmsrrxktmkx"]
 
-[ext_resource type="PackedScene" uid="uid://bmo4fddp0ki45" path="res://misc/movement_path.tscn" id="1_6ni71"]
 [ext_resource type="Script" path="res://misc/road/road.gd" id="1_a2nf7"]
 [ext_resource type="PackedScene" uid="uid://pjn6845t0w02" path="res://misc/road/road_segment.tscn" id="2_nrub4"]
+
+[sub_resource type="Curve2D" id="Curve2D_ig5md"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1232, -168, 0, 0, 0, 0, -592, 744)
+}
+point_count = 2
 
 [node name="Road" type="Node2D"]
 script = ExtResource("1_a2nf7")
 intersection_chance = 0.15
 
-[node name="MovementPath" parent="." instance=ExtResource("1_6ni71")]
+[node name="MovementPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ig5md")
 
 [node name="road_segment" parent="MovementPath" instance=ExtResource("2_nrub4")]
-position = Vector2(320.001, 288)
+position = Vector2(319.998, 288.001)
 progress = 1019.65
 
 [node name="road_segment2" parent="MovementPath" instance=ExtResource("2_nrub4")]

@@ -6,7 +6,6 @@ class_name VehicleController
 @export var vehicle_speed: VehicleSpeed
 @export var steering_path: Path2D
 @export var steer_anchor: PathFollow2D
-@export var vehicle_detection: VehicleDetection
 
 var is_active: bool = false
 

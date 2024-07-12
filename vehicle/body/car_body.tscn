@@ -4,5 +4,8 @@
 
 [node name="CarBody" instance=ExtResource("1_ao8ej")]
 
+[node name="VehicleSprite" parent="." index="0"]
+region_rect = Rect2(0, 64, 1288, 124)
+
 [node name="CollisionPolygon2D" parent="VehicleCollider" index="0"]
 polygon = PackedVector2Array(-88, 30, -32, 54, 88, -6, 32, -30)

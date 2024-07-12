@@ -4,14 +4,18 @@ extends Node
 signal player_speed_updated
 signal player_color_updated(new_color: int)
 
-const npc_pos: float = 0.59
-const starting_pos: float = 0.56
 
+const starting_pos: float = 0.56
+const starting_speed: float = 800.0
 
 @onready var vehicle_data = Globals.vehicle_database.data[0].duplicate(true)
 
+
+var player_vehicle_speed: VehicleSpeed
+var player_controller: PlayerController
+
 func _ready() -> void:
-	vehicle_data.speed = 600.0
+	vehicle_data.speed = starting_speed
 
 
 @onready var player_color: int = Globals.CAR_COLORS.WHITE:

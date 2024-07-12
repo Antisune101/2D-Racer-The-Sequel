@@ -1,7 +1,7 @@
 extends Node
 
 signal change_to_menu(target_menu)
-
+signal goto_prev_menu
 
 enum CAR_COLORS {
 	RED,

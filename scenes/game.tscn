@@ -1,10 +1,105 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk2aghiimgl5i"]
+[gd_scene load_steps=8 format=3 uid="uid://bk2aghiimgl5i"]
 
 [ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_l8b2v"]
+[ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_kyfdr"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="3_af7ut"]
+[ext_resource type="Script" path="res://ui/buttons/ui_change_scene_btn.gd" id="4_1eohx"]
+[ext_resource type="Script" path="res://scenes/game_camera.gd" id="4_3irj4"]
+[ext_resource type="Script" path="res://ui/buttons/ui_reload_scene_btn.gd" id="4_e2oag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5pny"]
+shader = ExtResource("3_af7ut")
+shader_parameter/lod = 2.0
 
 [node name="Game" instance=ExtResource("1_l8b2v")]
 
-[node name="Player" parent="Traffic/MovementPath" index="0"]
-position = Vector2(228.802, 333.599)
+[node name="UI" parent="UI" index="0" node_paths=PackedStringArray("starting_menu")]
+starting_menu = NodePath("UncenteredMenus/InGame")
 
+[node name="InGame" parent="UI/UI/UncenteredMenus" index="0" instance=ExtResource("2_kyfdr")]
+layout_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UI/UncenteredMenus/InGame" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 0.014
+anchor_right = 0.012
+anchor_bottom = 0.014
+offset_left = 0.32
+offset_top = -0.0640001
+offset_right = 364.32
+offset_bottom = 15.936
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="UI/UI/UncenteredMenus/InGame/HBoxContainer" index="0"]
+layout_mode = 2
+text = "Score: 0000"
+
+[node name="Label2" type="Label" parent="UI/UI/UncenteredMenus/InGame/HBoxContainer" index="1"]
+layout_mode = 2
+text = "Time: 0000s"
+
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/InGame" index="1"]
+visible = false
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_right = 410.0
+offset_bottom = 42.0
+grow_vertical = 1
+
+[node name="Label" parent="UI/UI/UncenteredMenus/InGame/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+visible = false
+text = ""
+
+[node name="Buttons" parent="UI/UI/UncenteredMenus/InGame/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+visible = false
+
+[node name="GameOver" parent="UI/UI/UncenteredMenus" index="1" instance=ExtResource("2_kyfdr")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/UI/UncenteredMenus/GameOver" index="0"]
+material = SubResource("ShaderMaterial_p5pny")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/GameOver" index="1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = -29.0
+offset_right = 143.0
+offset_bottom = 29.0
+grow_horizontal = 2
+
+[node name="Label" parent="UI/UI/UncenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Game Over"
+
+[node name="UIReloadSceneBtn" type="Label" parent="UI/UI/UncenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Restart"
+script = ExtResource("4_e2oag")
+
+[node name="UIChangeSceneBtn" type="Label" parent="UI/UI/UncenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1"]
+layout_mode = 2
+text = "Return to menu"
+script = ExtResource("4_1eohx")
+
+[node name="Player" parent="Traffic/MovementPath" index="0"]
+position = Vector2(210.565, 342.717)
+
+[node name="Camera2D" parent="." index="3"]
+script = ExtResource("4_3irj4")
+boost_zoom = 0.95
+
+[editable path="UI/UI"]
+[editable path="UI/UI/UncenteredMenus/InGame"]
+[editable path="UI/UI/UncenteredMenus/GameOver"]
 [editable path="Traffic"]

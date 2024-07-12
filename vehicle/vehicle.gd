@@ -6,19 +6,27 @@ class_name Vehicle
 @export var steer_anchor: PathFollow2D
 @export var npc_controller: NPC_Controller
 @export var vehicle_detection: VehicleDetection
-
+@export var collision_avoidance: Area2D
 
 var body: VehicleBody = null
-
+var data: VehicleData
+var steer: float
 
 func init_vehicle(vehicle_data: VehicleData, init_steer: float) -> void:
-	body = vehicle_data.body.instantiate()
+	data = vehicle_data
+	steer = init_steer
+
+func _ready() -> void:
+	body = data.body.instantiate()
 	body.parent = self
 	steer_anchor.add_child(body)
+	body.set_color(randi_range(0, 6))
 	if npc_controller:
+		npc_controller.init_npc(.5)
 		vehicle_detection.init_from_body(body)
-		npc_controller.init_npc(init_steer)
-	vehicle_speed.default_speed = vehicle_data.speed
+		npc_controller.init_npc(steer)
+		collision_avoidance.position = body.front_marker.position
+	vehicle_speed.default_speed = data.speed
 
 
 func _physics_process(_delta: float) -> void:
