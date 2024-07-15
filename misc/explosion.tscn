@@ -1,0 +1,198 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpfv6fvol5otu"]
+
+[ext_resource type="Script" path="res://misc/explosion.gd" id="1_3vgqq"]
+[ext_resource type="AudioStream" uid="uid://b46ujoarxfn" path="res://assets/audio/explosion.wav" id="2_r502g"]
+
+[sub_resource type="Curve" id="Curve_l1lry"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.494382, 0.450549), -6.11264, -6.11264, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dc52q"]
+offsets = PackedFloat32Array(0, 0.233333, 0.486667, 0.673333)
+colors = PackedColorArray(0.94, 0.94, 0.94, 1, 1, 0, 0, 1, 0.994758, 0.576677, 0.161637, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_m7di7"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, -103.297), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_oryv3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.960674, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ma4xv"]
+offsets = PackedFloat32Array(0, 0.126667, 0.373333, 0.553333, 0.886667)
+colors = PackedColorArray(1, 1, 1, 1, 0.959557, 0.455137, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_1uqui"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, -936.842, 0, 1, Vector2(0.213483, 0), -936.842, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8874k"]
+offsets = PackedFloat32Array(0.646667, 0.886667)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_j1sg7"]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("CPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("CPUParticles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_l1mvn"]
+resource_name = "explode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvyt8"]
+_data = {
+"RESET": SubResource("Animation_j1sg7"),
+"explode": SubResource("Animation_l1mvn")
+}
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_3vgqq")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 60.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
+scale_amount_min = 40.0
+scale_amount_max = 60.0
+scale_amount_curve = SubResource("Curve_l1lry")
+color_ramp = SubResource("Gradient_dc52q")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 125
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(-200, 100)
+initial_velocity_min = 500.0
+initial_velocity_max = 700.0
+linear_accel_curve = SubResource("Curve_m7di7")
+damping_min = 100.0
+damping_max = 300.0
+scale_amount_min = 4.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_oryv3")
+color_ramp = SubResource("Gradient_ma4xv")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+anim_speed_min = 500.0
+anim_speed_max = 500.0
+anim_speed_curve = SubResource("Curve_1uqui")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(-1, -2)
+spread = 90.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+linear_accel_min = -200.0
+linear_accel_max = -100.0
+damping_min = 50.0
+damping_max = 50.0
+scale_amount_min = 4.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_oryv3")
+color_ramp = SubResource("Gradient_8874k")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+anim_speed_min = 500.0
+anim_speed_max = 500.0
+anim_speed_curve = SubResource("Curve_1uqui")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvyt8")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_r502g")
+volume_db = -10.0

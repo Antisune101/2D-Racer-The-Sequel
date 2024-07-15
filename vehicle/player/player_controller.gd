@@ -23,7 +23,6 @@ var steer: float = 0.0
 var is_boosting: bool = false
 var anim_tween: Tween = null
 
-
 @onready var max_steer_progress: float = steer_anchor.get_parent().curve.get_baked_length()
 @onready var starting_position: float = get_parent().progress
 
@@ -35,6 +34,9 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	if parent_vehicle.has_crashed:
+		if anim_tween: anim_tween.kill()
+		return
 	var input = Input.get_axis("steer_left", "steer_right")
 
 	if input != 0.0: steer = input
@@ -57,6 +59,7 @@ func abs_steer() -> float: return absf(steer)
 
 
 func _input(event: InputEvent) -> void:
+	if parent_vehicle.has_crashed: return
 	if event.is_action_pressed("boost"): animate_speed_modifier(boost_amount, boost_distance, boost_start_time)
 	if event.is_action_pressed("brake"): animate_speed_modifier(-brake_amount, -brake_distance, brake_start_time)
 	if event.is_action_released("boost") || event.is_action_released("brake"): animate_speed_modifier(-current_speed_modifier(), 0, reset_time, true)

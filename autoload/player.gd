@@ -11,6 +11,7 @@ const starting_speed: float = 800.0
 @onready var vehicle_data = Globals.vehicle_database.data[0].duplicate(true)
 
 
+var player_vehicle: PlayerVehicle
 var player_vehicle_speed: VehicleSpeed
 var player_controller: PlayerController
 

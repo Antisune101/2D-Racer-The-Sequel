@@ -1,12 +1,14 @@
 extends Node
 
-@onready var ui_click: AudioStreamPlayer2D = $UIClick
-@onready var ui_select: AudioStreamPlayer2D = $UISelect
+
+@onready var ui_sounds: Dictionary = {
+	"select": $UISelect,
+	"move_cursor": $UIMoveCursor,
+	"back": $UIBack,
+	"pause": $UIPause,
+	"score": $Score
+}
 
 
-func play_ui_click() -> void:
-	ui_click.play()
-
-
-func play_ui_select() -> void:
-	ui_select.play()
+func play_sound(sound_id: String) -> void:
+	ui_sounds[sound_id].play()

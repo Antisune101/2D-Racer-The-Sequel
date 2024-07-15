@@ -11,6 +11,7 @@ class_name Vehicle
 var body: VehicleBody = null
 var data: VehicleData
 var steer: float
+var has_crashed: bool = false
 
 func init_vehicle(vehicle_data: VehicleData, init_steer: float) -> void:
 	data = vehicle_data
@@ -27,6 +28,13 @@ func _ready() -> void:
 		npc_controller.init_npc(steer)
 		collision_avoidance.position = body.front_marker.position
 	vehicle_speed.default_speed = data.speed
+	body.collider.area_entered.connect(on_collision)
+
+
+func on_collision(_area: Area2D) -> void:
+	has_crashed = true
+	vehicle_speed.speed = 0.0
+	body.modulate = Color.BLACK
 
 
 func _physics_process(_delta: float) -> void:

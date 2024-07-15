@@ -44,7 +44,7 @@ text = "Main Menu"
 layout_mode = 2
 text = "Play"
 script = ExtResource("3_7f8ny")
-scene_id = "debug"
+scene_id = "game"
 
 [node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2

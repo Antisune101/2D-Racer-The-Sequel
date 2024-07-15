@@ -17,7 +17,7 @@ func _ready() -> void:
 	player_color_changed(Player.player_color)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_selected && scale != Vector2(1.1, 1.1):
 		hover()
 

@@ -12,6 +12,11 @@ var default_speed: float = 0.0:
 
 var speed: float = 0.0:
 	set(new_speed):
+		if parent.has_crashed:
+			if speed != 0.0:
+				speed = 0.0
+				if is_player: Player.player_speed = 0.0
+			return
 		speed = new_speed
 		if is_player: Player.player_speed = new_speed
 		speed_updated.emit()

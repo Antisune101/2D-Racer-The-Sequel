@@ -7,7 +7,6 @@ class_name VehicleController
 @export var steering_path: Path2D
 @export var steer_anchor: PathFollow2D
 
-var is_active: bool = false
 
 
 func enable() -> void:

@@ -4,8 +4,8 @@ class_name PlayerVehicle
 
 @export var use_npc_controller: bool
 
-
 func _ready() -> void:
+	Player.player_vehicle = self
 	super._ready()
 	body.set_color(Player.player_color)
 	body.collider.make_player()

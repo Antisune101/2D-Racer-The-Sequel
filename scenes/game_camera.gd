@@ -10,6 +10,7 @@ var anim_tween: Tween
 var shake_strength: float
 
 func _input(event: InputEvent) -> void:
+	if Player.player_vehicle.has_crashed: return
 	if Input.is_action_just_pressed("boost"): animate_zoom(boost_zoom)
 	if Input.is_action_just_pressed("brake"): animate_zoom(brake_zoom)
 	if Input.is_action_just_released("boost") || Input.is_action_just_released("brake"): animate_zoom(1.0)

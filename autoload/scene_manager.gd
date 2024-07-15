@@ -21,14 +21,13 @@ const SCENES: Dictionary = {
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	cover.position.x = -cover_width
 
 
 func change_scene(new_scene: String) -> void:
 	current_scene = new_scene
 	transition_to_scene(new_scene)
-
-
 
 
 func reload_scene() -> void:
@@ -40,13 +39,18 @@ func transition_to_scene(new_scene: String) -> void:
 	await cover_screen()
 	get_tree().change_scene_to_file(SCENES[new_scene])
 	show_screen()
+	get_tree().paused = false
 	is_transitioning = false
 
 
 func cover_screen() -> void:
-	await get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).tween_property(cover, "position", Vector2.ZERO, duration).finished
+	await get_tween().set_ease(Tween.EASE_IN).tween_property(cover, "position", Vector2.ZERO, duration).finished
 
 
 func show_screen() -> void:
-	await get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO).tween_property(cover, "position", Vector2(cover_width, 0), duration).finished
+	await get_tween().set_ease(Tween.EASE_IN_OUT).tween_property(cover, "position", Vector2(cover_width, 0), duration).finished
 	cover.position = Vector2(-cover_width, 0)
+
+
+func get_tween() -> Tween:
+	return get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).set_trans(Tween.TRANS_EXPO)
