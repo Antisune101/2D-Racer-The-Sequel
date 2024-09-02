@@ -28,8 +28,9 @@ var anim_tween: Tween = null
 
 
 func _ready():
-	Player.player_controller = self
-	parent_vehicle.init_vehicle(Player.vehicle_data, 0.5)
+	Vehicle.player_controller = self
+	# NOTE: This should be changed for new data system
+	parent_vehicle.init_vehicle(Globals.get_vehicle_data_by_type(Vehicle.player_vehicle_type), VehicleData.PLAYER_SPEED, 0.5)
 	steer_anchor.progress_ratio = initial_steer
 
 

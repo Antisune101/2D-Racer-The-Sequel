@@ -1,29 +1,50 @@
-[gd_resource type="Resource" script_class="VehicleDatabase" load_steps=9 format=3 uid="uid://dqu75m28d1jij"]
+[gd_resource type="Resource" script_class="VehicleDatabase" load_steps=15 format=3 uid="uid://dqu75m28d1jij"]
 
 [ext_resource type="PackedScene" uid="uid://cxksgrrg030xn" path="res://vehicle/body/car_body.tscn" id="1_yv7my"]
 [ext_resource type="Script" path="res://vehicle/data/vehicle_data.gd" id="2_vh4i7"]
 [ext_resource type="PackedScene" uid="uid://cv4mk6hcwaxaa" path="res://vehicle/body/truck_body.tscn" id="3_j0xhi"]
 [ext_resource type="PackedScene" uid="uid://bnhut2x45e7e5" path="res://vehicle/body/tonk_body.tscn" id="4_tepus"]
+[ext_resource type="PackedScene" uid="uid://btrdim0egycvv" path="res://vehicle/body/pickup_body.tscn" id="5_mv1bg"]
 [ext_resource type="Script" path="res://vehicle/data/vehicle_database.gd" id="5_siuhs"]
+[ext_resource type="PackedScene" uid="uid://cckbmdh6ucdip" path="res://vehicle/body/van_body.tscn" id="6_wtua3"]
+[ext_resource type="PackedScene" uid="uid://cvwkur7se4kgx" path="res://vehicle/body/station_wagon_body.tscn" id="7_yywwc"]
 
 [sub_resource type="Resource" id="Resource_t5jj2"]
 script = ExtResource("2_vh4i7")
-id = "car"
-speed = 500.0
+type = 0
+display_name = "Car"
 body = ExtResource("1_yv7my")
 
 [sub_resource type="Resource" id="Resource_x7ptb"]
 script = ExtResource("2_vh4i7")
-id = "truck"
-speed = 472.0
+type = 1
+display_name = "Truck"
 body = ExtResource("3_j0xhi")
 
 [sub_resource type="Resource" id="Resource_77yqi"]
 script = ExtResource("2_vh4i7")
-id = "tonk"
-speed = 450.0
+type = 2
+display_name = "Tonk"
 body = ExtResource("4_tepus")
+
+[sub_resource type="Resource" id="Resource_8xng6"]
+script = ExtResource("2_vh4i7")
+type = 3
+display_name = "Pickup"
+body = ExtResource("5_mv1bg")
+
+[sub_resource type="Resource" id="Resource_tp1dp"]
+script = ExtResource("2_vh4i7")
+type = 4
+display_name = "Van"
+body = ExtResource("6_wtua3")
+
+[sub_resource type="Resource" id="Resource_2tevc"]
+script = ExtResource("2_vh4i7")
+type = 5
+display_name = "Station Wagon"
+body = ExtResource("7_yywwc")
 
 [resource]
 script = ExtResource("5_siuhs")
-data = Array[ExtResource("2_vh4i7")]([SubResource("Resource_t5jj2"), SubResource("Resource_x7ptb"), SubResource("Resource_77yqi")])
+data = Array[ExtResource("2_vh4i7")]([SubResource("Resource_t5jj2"), SubResource("Resource_x7ptb"), SubResource("Resource_77yqi"), SubResource("Resource_8xng6"), SubResource("Resource_tp1dp"), SubResource("Resource_2tevc")])

@@ -16,7 +16,8 @@ var is_transitioning: bool = false
 const SCENES: Dictionary = {
 	"main_menu": "res://scenes/title_screen.tscn",
 	"game": "res://scenes/game.tscn",
-	"debug": "res://scenes/debug_game.tscn"
+	"debug": "res://scenes/debug_game.tscn",
+	"customize": "res://scenes/customize_scene.tscn"
 }
 
 

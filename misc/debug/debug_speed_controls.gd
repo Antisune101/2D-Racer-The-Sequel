@@ -20,16 +20,16 @@ func _ready() -> void:
 	update_btn.pressed.connect(update_stuff)
 	toggle_ui_btn.pressed.connect(toggle_ui)
 	await get_tree().create_timer(0.01).timeout
-	speed_edit.value = Player.player_vehicle_speed.default_speed
-	boost_edit.value = Player.player_controller.boost_amount
-	brake_edit.value = Player.player_controller.brake_amount
-	boost_start_edit.value = Player.player_controller.boost_start_time
-	brake_start_edit.value = Player.player_controller.brake_start_time
-	speed_reset_edit.value = Player.player_controller.reset_time
-	steer_speed_edit.value = Player.player_controller.steer_speed
-	steer_friction_edit.value = Player.player_controller.steer_reset_force
-	lane_assist_edit.value = Player.player_controller.lane_assist_strength
-	lane_assist_steer_edit.value = Player.player_controller.lane_assist_max_steer
+	speed_edit.value = Vehicle.player_vehicle_speed.default_speed
+	boost_edit.value = Vehicle.player_controller.boost_amount
+	brake_edit.value = Vehicle.player_controller.brake_amount
+	boost_start_edit.value = Vehicle.player_controller.boost_start_time
+	brake_start_edit.value = Vehicle.player_controller.brake_start_time
+	speed_reset_edit.value = Vehicle.player_controller.reset_time
+	steer_speed_edit.value = Vehicle.player_controller.steer_speed
+	steer_friction_edit.value = Vehicle.player_controller.steer_reset_force
+	lane_assist_edit.value = Vehicle.player_controller.lane_assist_strength
+	lane_assist_steer_edit.value = Vehicle.player_controller.lane_assist_max_steer
 
 
 func toggle_ui() -> void:
@@ -41,20 +41,20 @@ func update_stuff() -> void:
 	release_focus_on_stuff()
 
 
-	Player.player_vehicle_speed.speed = 0.0
-	Player.player_vehicle_speed.default_speed = speed_edit.value
-	Player.player_controller.boost_amount = boost_edit.value
-	Player.player_controller.brake_amount = brake_edit.value
-	Player.player_vehicle_speed.default_speed = speed_edit.value
-	Player.player_controller.boost_amount = boost_edit.value
-	Player.player_controller.brake_amount = brake_edit.value
-	Player.player_controller.boost_start_time = boost_start_edit.value
-	Player.player_controller.brake_start_time = brake_start_edit.value
-	Player.player_controller.reset_time = speed_reset_edit.value
-	Player.player_controller.steer_speed = steer_speed_edit.value
-	Player.player_controller.steer_reset_force = steer_friction_edit.value
-	Player.player_controller.lane_assist_strength = lane_assist_edit.value
-	Player.player_controller.lane_assist_max_steer = lane_assist_steer_edit.value
+	Vehicle.player_vehicle_speed.speed = 0.0
+	Vehicle.player_vehicle_speed.default_speed = speed_edit.value
+	Vehicle.player_controller.boost_amount = boost_edit.value
+	Vehicle.player_controller.brake_amount = brake_edit.value
+	Vehicle.player_vehicle_speed.default_speed = speed_edit.value
+	Vehicle.player_controller.boost_amount = boost_edit.value
+	Vehicle.player_controller.brake_amount = brake_edit.value
+	Vehicle.player_controller.boost_start_time = boost_start_edit.value
+	Vehicle.player_controller.brake_start_time = brake_start_edit.value
+	Vehicle.player_controller.reset_time = speed_reset_edit.value
+	Vehicle.player_controller.steer_speed = steer_speed_edit.value
+	Vehicle.player_controller.steer_reset_force = steer_friction_edit.value
+	Vehicle.player_controller.lane_assist_strength = lane_assist_edit.value
+	Vehicle.player_controller.lane_assist_max_steer = lane_assist_steer_edit.value
 
 
 func release_focus_on_stuff() -> void:

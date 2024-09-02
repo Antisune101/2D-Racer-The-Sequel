@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	for segment: RoadSegment in road_segments: segment.progress += Player.player_speed * delta
+	for segment: RoadSegment in road_segments: segment.progress += Vehicle.player_speed * delta
 
 
 func _generate_new_road_segment(segment: RoadSegment) -> void:

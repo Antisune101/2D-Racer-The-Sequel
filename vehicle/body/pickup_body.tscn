@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://btrdim0egycvv"]
+
+[ext_resource type="PackedScene" uid="uid://u6ghdskpk4bi" path="res://vehicle/body/vehicle_body.tscn" id="1_8ql6m"]
+
+[node name="PickupBody" instance=ExtResource("1_8ql6m")]
+
+[node name="VehicleSprite" parent="." index="0"]
+offset = Vector2(20, -12)
+region_rect = Rect2(2724, 48, 1568, 140)
+
+[node name="CollisionPolygon2D" parent="VehicleCollider" index="0"]
+polygon = PackedVector2Array(-88, 30, -32, 54, 128, -26, 72, -50)
+
+[node name="Front" parent="." index="2"]
+position = Vector2(128, -26)

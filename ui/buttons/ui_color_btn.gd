@@ -2,19 +2,24 @@ extends UIButton
 class_name UIColorBtn
 
 
-@export var btn_color: Globals.CAR_COLORS
+var btn_color: Globals.CarColors
 
 
-@onready var btn_text: String = text
+var btn_text: String
+var is_selected: bool = false
+
 @onready var selected_text: String = "[ %s ]" % btn_text
 
 
-var is_selected: bool = false
+func _init(color: Globals.CarColors) -> void:
+	btn_text = Globals.CarColors.keys()[color]
+	btn_color = color
+	
 
 
 func _ready() -> void:
-	Player.player_color_updated.connect(player_color_changed)
-	player_color_changed(Player.player_color)
+	Globals.player_color_updated.connect(player_color_changed)
+	player_color_changed(Vehicle.player_color)
 
 
 func _physics_process(_delta: float) -> void:
@@ -23,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func select() -> void:
-	Player.player_color = btn_color
+	Vehicle.player_color = btn_color
 
 
 func player_color_changed(new_color: int) -> void:

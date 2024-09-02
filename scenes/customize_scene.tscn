@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://fm5odepysod"]
+
+[ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_taocc"]
+[ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_3t46i"]
+[ext_resource type="Script" path="res://ui/menus/customize_menu/generate_color_options.gd" id="3_nf1k4"]
+[ext_resource type="Script" path="res://ui/menus/customize_menu/generate_vehicle_options.gd" id="4_67ayn"]
+[ext_resource type="Script" path="res://ui/buttons/ui_switch_menu_btn.gd" id="4_ou2m1"]
+[ext_resource type="Script" path="res://ui/buttons/ui_change_scene_btn.gd" id="5_oadky"]
+[ext_resource type="Script" path="res://ui/buttons/ui_back_btn.gd" id="7_h2kj3"]
+
+[node name="CustomizeScene" instance=ExtResource("1_taocc")]
+
+[node name="UI" parent="UI" index="0" node_paths=PackedStringArray("starting_menu")]
+starting_menu = NodePath("CenteredMenus/CustomizeMenu")
+
+[node name="CustomizeMenu" parent="UI/UI/CenteredMenus" index="0" instance=ExtResource("2_3t46i")]
+layout_mode = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/CustomizeMenu" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.0
+offset_top = -61.0
+offset_right = 131.0
+offset_bottom = 61.0
+grow_horizontal = 2
+
+[node name="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Customize"
+
+[node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Change Car"
+script = ExtResource("4_ou2m1")
+target_menu = NodePath("../../../../../../ChangeCar")
+
+[node name="UISwitchMenuBtn2" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Chane Color"
+script = ExtResource("4_ou2m1")
+target_menu = NodePath("../../../../../../ChangeColor")
+
+[node name="UIChangeSceneBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2"]
+layout_mode = 2
+text = "Accept"
+script = ExtResource("5_oadky")
+scene_id = "main_menu"
+
+[node name="ChangeColor" parent="UI/UI/CenteredMenus" index="1" instance=ExtResource("2_3t46i")]
+layout_mode = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeColor" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.0
+offset_top = -29.0
+offset_right = 167.0
+offset_bottom = 29.0
+grow_horizontal = 2
+
+[node name="Label" parent="UI/UI/CenteredMenus/ChangeColor/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Choose Color"
+
+[node name="Buttons" parent="UI/UI/CenteredMenus/ChangeColor/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+script = ExtResource("3_nf1k4")
+
+[node name="UIBackBtn" type="Label" parent="UI/UI/CenteredMenus/ChangeColor/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("7_h2kj3")
+
+[node name="ChangeCar" parent="UI/UI/CenteredMenus" index="2" instance=ExtResource("2_3t46i")]
+layout_mode = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeCar" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = -88.0
+offset_right = 150.0
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="Label" parent="UI/UI/CenteredMenus/ChangeCar/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Pick your Vehicle"
+autowrap_mode = 2
+
+[node name="Buttons" parent="UI/UI/CenteredMenus/ChangeCar/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+script = ExtResource("4_67ayn")
+
+[node name="UIBackBtn" type="Label" parent="UI/UI/CenteredMenus/ChangeCar/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("7_h2kj3")
+
+[node name="Player" parent="Traffic/MovementPath" index="0"]
+position = Vector2(210.565, 342.717)
+use_npc_controller = true
+
+[editable path="UI/UI"]
+[editable path="UI/UI/CenteredMenus/CustomizeMenu"]
+[editable path="UI/UI/CenteredMenus/ChangeColor"]
+[editable path="UI/UI/CenteredMenus/ChangeCar"]
+[editable path="Traffic"]

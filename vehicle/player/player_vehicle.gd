@@ -5,11 +5,11 @@ class_name PlayerVehicle
 @export var use_npc_controller: bool
 
 func _ready() -> void:
-	Player.player_vehicle = self
+	Vehicle.player_vehicle = self
 	super._ready()
-	body.set_color(Player.player_color)
+	body.set_color(Vehicle.player_color)
 	body.collider.make_player()
-	Player.player_color_updated.connect(body.set_color)
+	Globals.player_color_updated.connect(body.set_color)
 	
 	if use_npc_controller:
 		$PlayerController.queue_free()
@@ -17,4 +17,4 @@ func _ready() -> void:
 		$NPC_Controller.queue_free()
 		$VehicleDetection.queue_free()
 		$VehicleSteering/SteerAnchor/CollisionAvoidance.queue_free()
-	progress_ratio = Player.starting_pos
+	progress_ratio = VehicleData.PLAYER_STARTING_POS

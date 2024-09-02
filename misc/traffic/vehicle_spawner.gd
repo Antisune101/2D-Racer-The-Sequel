@@ -21,13 +21,13 @@ var current_segment: Dictionary = {
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_page_up"): on_segment_past()
 	if !has_segment_past:
-		distance_past += (Player.player_speed - Globals.get_vehicle_data_from_id("car").speed) * delta
+		distance_past += (Vehicle.player_speed - VehicleData.NPC_SPEED) * delta
 		
 		
 		for i in range(3):
 			if !current_segment["is_finished"]: break
 			if current_segment[i]["char"] != "E" && distance_past >= current_segment[i]["offset"] && !current_segment[i]["has_spawned"]:
-				spawn_vehicle(Globals.get_vehicle_data_from_id("car" if current_segment[i]["char"] == "C" else "truck"), i/2.0)
+				spawn_vehicle(Globals.get_vehicle_data_by_type(Globals.VehicleType.CAR if current_segment[i]["char"] == "C" else Globals.VehicleType.TRUCK), i/2.0)
 				current_segment[i]["has_spawned"] = true
 		
 		if distance_past >= segment_size:
@@ -59,7 +59,7 @@ func spawn_segment(new_segment: String) -> void:
 
 func spawn_vehicle(data: VehicleData, lane: float) -> void:
 	var new_vehicle: Vehicle = vehicle_scene.instantiate()
-	new_vehicle.init_vehicle(data, lane)
+	new_vehicle.init_vehicle(data, VehicleData.NPC_SPEED, lane)
 	movement_path.add_child(new_vehicle)
 
 

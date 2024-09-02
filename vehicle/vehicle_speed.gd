@@ -15,10 +15,10 @@ var speed: float = 0.0:
 		if parent.has_crashed:
 			if speed != 0.0:
 				speed = 0.0
-				if is_player: Player.player_speed = 0.0
+				if is_player: Vehicle.player_speed = 0.0
 			return
 		speed = new_speed
-		if is_player: Player.player_speed = new_speed
+		if is_player: Vehicle.player_speed = new_speed
 		speed_updated.emit()
 
 
@@ -30,10 +30,10 @@ var speed: float = 0.0:
 func _ready() -> void:
 	if is_player:
 		set_physics_process(false)
-		Player.player_vehicle_speed = self
+		Vehicle.player_vehicle_speed = self
 
 # Move vehicle relative to 'player' speed
-func _physics_process(delta: float) -> void: parent.progress += (Player.player_speed - speed) * delta
+func _physics_process(delta: float) -> void: parent.progress += (Vehicle.player_speed - speed) * delta
 
 
 
