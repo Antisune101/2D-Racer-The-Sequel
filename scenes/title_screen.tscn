@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://uvyq3bq3v0m2"]
+[gd_scene load_steps=28 format=3 uid="uid://uvyq3bq3v0m2"]
 
 [ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_2cjdk"]
 [ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_d73b0"]
@@ -23,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://6ec6ffbnhwu6" path="res://assets/art/input icons/controller/xbox_lt.png" id="20_m2v72"]
 [ext_resource type="Texture2D" uid="uid://befrmw7igmuw5" path="res://assets/art/input icons/controller/xbox_button_color_b.png" id="23_fts5f"]
 [ext_resource type="Texture2D" uid="uid://dhujmmxnfj837" path="res://assets/art/input icons/controller/xbox_rt.png" id="24_yhhos"]
+[ext_resource type="Script" path="res://ui/menus/leaderboard/ui_leaderboard.gd" id="24_yysj1"]
+[ext_resource type="PackedScene" uid="uid://bne1vhotfsbv8" path="res://ui/menus/leaderboard/ui_leaderboard_entry.tscn" id="25_2hsp7"]
+[ext_resource type="Script" path="res://ui/buttons/ui_button.gd" id="26_radbe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8alad"]
 shader = ExtResource("7_pqfcb")
@@ -34,6 +37,7 @@ shader_parameter/lod = 2.0
 starting_menu = NodePath("CenteredMenus/MainMenu")
 
 [node name="MainMenu" parent="UI/UI/CenteredMenus" index="0" instance=ExtResource("2_d73b0")]
+visible = false
 layout_mode = 2
 
 [node name="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer" index="0"]
@@ -51,14 +55,20 @@ text = "Customize"
 script = ExtResource("3_7f8ny")
 scene_id = "customize"
 
-[node name="UISwitchMenuBtn3" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2" node_paths=PackedStringArray("target_menu")]
+[node name="Leaderboard" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Leaderboard"
+script = ExtResource("4_bkuiu")
+target_menu = NodePath("../../../../../../Leaderboard")
+
+[node name="UISwitchMenuBtn3" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
 text = "Controls
 "
 script = ExtResource("4_bkuiu")
 target_menu = NodePath("../../../../../../Controls")
 
-[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3"]
+[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="4"]
 layout_mode = 2
 text = "Exit"
 script = ExtResource("5_viewp")
@@ -255,13 +265,63 @@ layout_mode = 2
 text = "Back"
 script = ExtResource("7_6dkgt")
 
+[node name="Leaderboard" parent="UI/UI/CenteredMenus" index="3" node_paths=PackedStringArray("SCORE_CONTAINER", "LOAD_LABEL") instance=ExtResource("2_d73b0")]
+layout_mode = 2
+script = ExtResource("24_yysj1")
+ENTRY_SCENE = ExtResource("25_2hsp7")
+SCORE_CONTAINER = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
+LOAD_LABEL = NodePath("PanelContainer/MarginContainer/VBoxContainer/LoadLabel")
+
+[node name="ColorRect" type="ColorRect" parent="UI/UI/CenteredMenus/Leaderboard" index="0"]
+material = SubResource("ShaderMaterial_8alad")
+custom_minimum_size = Vector2(640, 580)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/Leaderboard" index="1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = -26.0
+offset_right = 140.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Top Scores:"
+
+[node name="LoadLabel" type="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+text = "Loading..."
+
+[node name="EntryContainer" type="VBoxContainer" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="UIRefreshButton" type="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Refresh"
+script = ExtResource("26_radbe")
+
+[node name="UIBackBtn" type="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("7_6dkgt")
+
 [node name="Player" parent="Traffic/MovementPath" index="0"]
 position = Vector2(183.204, 356.398)
 progress = 1172.59
 use_npc_controller = true
 
+[connection signal="pressed" from="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer/Buttons/UIRefreshButton" to="UI/UI/CenteredMenus/Leaderboard" method="_on_ui_refresh_button_pressed"]
+
 [editable path="UI/UI"]
 [editable path="UI/UI/CenteredMenus/MainMenu"]
 [editable path="UI/UI/CenteredMenus/Settings"]
 [editable path="UI/UI/CenteredMenus/Controls"]
+[editable path="UI/UI/CenteredMenus/Leaderboard"]
 [editable path="Traffic"]

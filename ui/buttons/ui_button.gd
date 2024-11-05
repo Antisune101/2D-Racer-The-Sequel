@@ -2,7 +2,10 @@ extends Label
 class_name UIButton
 
 
-func select() -> void: pass
+signal pressed
+
+
+func select() -> void: pressed.emit()
 
 
 func hover() -> void:

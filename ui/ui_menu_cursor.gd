@@ -7,6 +7,10 @@ var menu_index: int = 0
 var just_visible: bool = false
 
 
+func _ready() -> void:
+	Globals.reload_menu_cursor.connect(reload_cursor)
+
+
 func _init() -> void:
 	text = ">"
 
@@ -76,6 +80,11 @@ func set_cursor_from_index(index: int, prev_index: int = -1) -> void:
 	var item_size = menu_item.get_rect().size
 
 	global_position = Vector2(item_pos.x, item_pos.y + item_size.y / 2.0) - (get_rect().size / 2.0)
+
+
+func reload_cursor() -> void:
+	set_cursor_from_index(menu_index)
+
 
 # NOTE: I really like ternary operators :)
 func get_menu_item_at_index(index: int) -> Control: return null if menu_parent == null else menu_parent.get_child(index)

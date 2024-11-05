@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Globals="*res://autoload/globals.gd"
 SceneManager="*res://autoload/scene_manager.tscn"
 SoundManager="*res://autoload/sound_manager.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -30,6 +31,10 @@ window/stretch/mode="viewport"
 [editor]
 
 movie_writer/movie_file="/home/antisune/Documents/Godot/Racer/video.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [file_customization]
 
