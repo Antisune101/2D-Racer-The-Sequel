@@ -33,7 +33,9 @@ func _ready() -> void:
 	var path: String = "res://.env"
 	if !FileAccess.file_exists(path):
 		push_warning("No env file found. Leaderboard unavailable")
-	
+		push_warning("If you want acces to leaderboard visit https://silentwolf.com/ for more info")
+		return
+		
 	var file = FileAccess.open(path, FileAccess.READ)
 	var api_key = file.get_line()
 	SilentWolf.configure({
