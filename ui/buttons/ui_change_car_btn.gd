@@ -16,5 +16,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func select() -> void:
+	if Vehicle.player_vehicle_type == btn_type: return
+	
 	Vehicle.player_vehicle_type = btn_type
-	SceneManager.reload_scene()
+	await SceneManager.cover_screen()
+	Vehicle.player_vehicle.queue_free()
+	Vehicle.movement_path.add_child(Vehicle.PLAYER_SCENE.instantiate())
+	SceneManager.show_screen()

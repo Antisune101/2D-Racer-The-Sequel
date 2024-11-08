@@ -1,11 +1,12 @@
-extends PathFollow2D
-class_name Vehicle
+class_name Vehicle extends PathFollow2D
 
+const PLAYER_SCENE := preload("res://vehicle/player/player_vehicle.tscn")
 
 static var player_vehicle: PlayerVehicle
 static var player_vehicle_speed: VehicleSpeed
 static var player_controller: PlayerController
 static var player_vehicle_type: Globals.VehicleType
+static var movement_path: Path2D
 
 
 static var player_color: int = Globals.CarColors.WHITE:
