@@ -41,14 +41,17 @@ func switch_to_menu(menu: UIMenu) -> void:
 
 
 func show_menu(new_menu: Control) -> void:
+	var screen_covered : bool = false
 	if current_menu:
-		await SceneManager.cover_screen()
+		if (!new_menu.is_in_group("no_transition_menu") && !current_menu.is_in_group("no_transition_menu")):
+			await SceneManager.cover_screen()
+			screen_covered = true
 		current_menu.hide_menu()
 	
 	menu_cursor.switch_to_menu(new_menu)
 	
 	new_menu.show_menu()
 	
-	if current_menu:
+	if screen_covered:
 		await SceneManager.show_screen()
 	current_menu = new_menu
