@@ -69,28 +69,22 @@ text = "Main Menu"
 layout_mode = 2
 text = "Play"
 script = ExtResource("3_7f8ny")
-scene_id = "game"
-
-[node name="Customize" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1"]
-layout_mode = 2
-text = "Customize"
-script = ExtResource("3_7f8ny")
 scene_id = "customize"
 
-[node name="Leaderboard" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2" node_paths=PackedStringArray("target_menu")]
+[node name="Leaderboard" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
 text = "Leaderboard"
 script = ExtResource("4_bkuiu")
 target_menu = NodePath("../../../../../../Leaderboard")
 
-[node name="UISwitchMenuBtn3" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3" node_paths=PackedStringArray("target_menu")]
+[node name="UISwitchMenuBtn3" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
 text = "Controls
 "
 script = ExtResource("4_bkuiu")
 target_menu = NodePath("../../../../../../Controls")
 
-[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="4"]
+[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3"]
 layout_mode = 2
 text = "Exit"
 script = ExtResource("5_viewp")
@@ -288,7 +282,6 @@ text = "Back"
 script = ExtResource("7_6dkgt")
 
 [node name="Leaderboard" parent="UI/UI/CenteredMenus" index="3" node_paths=PackedStringArray("SCORE_CONTAINER", "LOAD_LABEL") instance=ExtResource("2_d73b0")]
-visible = false
 layout_mode = 2
 script = ExtResource("24_yysj1")
 ENTRY_SCENE = ExtResource("25_2hsp7")
@@ -310,10 +303,10 @@ TITLE_TEXT = "Top 10"
 SUB_TITLE_TEXT = "scores:"
 
 [node name="Title" parent="UI/UI/CenteredMenus/Leaderboard/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
-text = "Top 10"
+text = "Highscores"
 
 [node name="SubTitle" parent="UI/UI/CenteredMenus/Leaderboard/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
-text = "scores:"
+text = "Top 10"
 
 [node name="PanelContainer" parent="UI/UI/CenteredMenus/Leaderboard" index="2"]
 anchors_preset = 5

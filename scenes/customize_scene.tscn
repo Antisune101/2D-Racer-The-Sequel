@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://fm5odepysod"]
+[gd_scene load_steps=10 format=3 uid="uid://fm5odepysod"]
 
 [ext_resource type="PackedScene" uid="uid://b057vsdgbrsbr" path="res://scenes/base_scene.tscn" id="1_taocc"]
 [ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_3t46i"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="3_0islg"]
 [ext_resource type="Script" path="res://ui/menus/customize_menu/generate_color_options.gd" id="3_nf1k4"]
 [ext_resource type="Script" path="res://ui/menus/customize_menu/generate_vehicle_options.gd" id="4_67ayn"]
 [ext_resource type="Script" path="res://ui/buttons/ui_switch_menu_btn.gd" id="4_ou2m1"]
 [ext_resource type="Script" path="res://ui/buttons/ui_change_scene_btn.gd" id="5_oadky"]
 [ext_resource type="Script" path="res://ui/buttons/ui_back_btn.gd" id="7_h2kj3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s25y3"]
+shader = ExtResource("3_0islg")
+shader_parameter/lod = 2.0
 
 [node name="CustomizeScene" instance=ExtResource("1_taocc")]
 
@@ -14,54 +19,74 @@
 starting_menu = NodePath("CenteredMenus/CustomizeMenu")
 
 [node name="CustomizeMenu" parent="UI/UI/CenteredMenus" index="0" instance=ExtResource("2_3t46i")]
+visible = false
 layout_mode = 2
 
-[node name="PanelContainer" parent="UI/UI/CenteredMenus/CustomizeMenu" index="0"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="ColorRect" type="ColorRect" parent="UI/UI/CenteredMenus/CustomizeMenu" index="0"]
+material = SubResource("ShaderMaterial_s25y3")
+custom_minimum_size = Vector2(640, 580)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -290.0
+offset_right = 320.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/CustomizeMenu" index="2"]
 offset_left = -131.0
 offset_top = -61.0
 offset_right = 131.0
 offset_bottom = 61.0
-grow_horizontal = 2
 
 [node name="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+visible = false
 text = "Customize"
 
-[node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0" node_paths=PackedStringArray("target_menu")]
+[node name="UIChangeSceneBtn2" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("5_oadky")
+scene_id = "game"
+
+[node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
 text = "Change Car"
 script = ExtResource("4_ou2m1")
 target_menu = NodePath("../../../../../../ChangeCar")
 
-[node name="UISwitchMenuBtn2" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1" node_paths=PackedStringArray("target_menu")]
+[node name="UISwitchMenuBtn2" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
 text = "Chane Color"
 script = ExtResource("4_ou2m1")
 target_menu = NodePath("../../../../../../ChangeColor")
 
-[node name="UIChangeSceneBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="2"]
+[node name="UIChangeSceneBtn" type="Label" parent="UI/UI/CenteredMenus/CustomizeMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3"]
 layout_mode = 2
-text = "Accept"
+text = "Main Menu"
 script = ExtResource("5_oadky")
 scene_id = "main_menu"
 
 [node name="ChangeColor" parent="UI/UI/CenteredMenus" index="1" instance=ExtResource("2_3t46i")]
+visible = false
 layout_mode = 2
 
-[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeColor" index="0"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -167.0
-offset_top = -29.0
-offset_right = 167.0
-offset_bottom = 29.0
-grow_horizontal = 2
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeColor" index="1"]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = -75.0
+offset_right = 235.0
+offset_bottom = 203.0
+grow_horizontal = 1
 
 [node name="Label" parent="UI/UI/CenteredMenus/ChangeColor/PanelContainer/MarginContainer/VBoxContainer" index="0"]
-text = "Choose Color"
+visible = false
+text = "Pick a Color"
 
 [node name="Buttons" parent="UI/UI/CenteredMenus/ChangeColor/PanelContainer/MarginContainer/VBoxContainer" index="1"]
 script = ExtResource("3_nf1k4")
@@ -74,17 +99,28 @@ script = ExtResource("7_h2kj3")
 [node name="ChangeCar" parent="UI/UI/CenteredMenus" index="2" instance=ExtResource("2_3t46i")]
 layout_mode = 2
 
-[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeCar" index="0"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = -88.0
-offset_right = 150.0
-offset_bottom = 88.0
-grow_horizontal = 2
+[node name="GameTitle" parent="UI/UI/CenteredMenus/ChangeCar" index="0"]
+TITLE_TEXT = "Customize"
+SUB_TITLE_TEXT = "Pick a vehicle"
+
+[node name="Title" parent="UI/UI/CenteredMenus/ChangeCar/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Customize"
+
+[node name="SubTitle" parent="UI/UI/CenteredMenus/ChangeCar/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+text = "Pick a vehicle"
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/ChangeCar" index="1"]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = -75.0
+offset_right = 235.0
+offset_bottom = 203.0
+grow_horizontal = 1
 
 [node name="Label" parent="UI/UI/CenteredMenus/ChangeCar/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+visible = false
 text = "Pick your Vehicle"
 autowrap_mode = 2
 
@@ -100,8 +136,14 @@ script = ExtResource("7_h2kj3")
 position = Vector2(210.565, 342.717)
 use_npc_controller = true
 
+[node name="VehicleSpawner" parent="Traffic" index="1"]
+is_active = false
+
 [editable path="UI/UI"]
 [editable path="UI/UI/CenteredMenus/CustomizeMenu"]
+[editable path="UI/UI/CenteredMenus/CustomizeMenu/GameTitle"]
 [editable path="UI/UI/CenteredMenus/ChangeColor"]
+[editable path="UI/UI/CenteredMenus/ChangeColor/GameTitle"]
 [editable path="UI/UI/CenteredMenus/ChangeCar"]
+[editable path="UI/UI/CenteredMenus/ChangeCar/GameTitle"]
 [editable path="Traffic"]
