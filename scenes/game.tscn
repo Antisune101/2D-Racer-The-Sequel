@@ -80,15 +80,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" parent="UI/UI/UncenteredMenus/Pause" index="1"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/Pause" index="2"]
 offset_left = -143.0
 offset_top = -29.0
 offset_right = 143.0
 offset_bottom = 29.0
-grow_horizontal = 2
 
 [node name="Label" parent="UI/UI/UncenteredMenus/Pause/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 text = "Game Paused"
@@ -125,14 +121,18 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 24
 text = "00000"
 
-[node name="PanelContainer" parent="UI/UI/UncenteredMenus/InGame" index="1"]
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/InGame" index="2"]
 visible = false
 anchors_preset = 0
+anchor_left = 0.0
 anchor_top = 0.0
+anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 0.0
 offset_top = 0.0
 offset_right = 410.0
 offset_bottom = 42.0
+grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Label" parent="UI/UI/UncenteredMenus/InGame/PanelContainer/MarginContainer/VBoxContainer" index="0"]
@@ -155,15 +155,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" parent="UI/UI/UncenteredMenus/GameOver" index="1"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="PanelContainer" parent="UI/UI/UncenteredMenus/GameOver" index="2"]
 offset_left = -143.0
 offset_top = -29.0
 offset_right = 143.0
 offset_bottom = 29.0
-grow_horizontal = 2
 
 [node name="Label" parent="UI/UI/UncenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 text = "Game Over"
@@ -206,6 +202,9 @@ boost_zoom = 0.95
 
 [editable path="UI/UI"]
 [editable path="UI/UI/UncenteredMenus/Pause"]
+[editable path="UI/UI/UncenteredMenus/Pause/GameTitle"]
 [editable path="UI/UI/UncenteredMenus/InGame"]
+[editable path="UI/UI/UncenteredMenus/InGame/GameTitle"]
 [editable path="UI/UI/UncenteredMenus/GameOver"]
+[editable path="UI/UI/UncenteredMenus/GameOver/GameTitle"]
 [editable path="Traffic"]

@@ -40,6 +40,28 @@ starting_menu = NodePath("CenteredMenus/MainMenu")
 visible = false
 layout_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="UI/UI/CenteredMenus/MainMenu" index="0"]
+material = SubResource("ShaderMaterial_8alad")
+custom_minimum_size = Vector2(640, 580)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/MainMenu" index="2"]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -136.0
+offset_top = -75.0
+offset_right = 136.0
+offset_bottom = 115.0
+grow_vertical = 1
+
 [node name="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 text = "Main Menu"
 
@@ -102,15 +124,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" parent="UI/UI/CenteredMenus/Controls" index="1"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -140.0
-offset_top = -26.0
-offset_right = 140.0
-offset_bottom = 26.0
-grow_horizontal = 2
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/Controls" index="2"]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -152.0
+offset_top = -75.0
+offset_right = 152.0
+offset_bottom = 211.0
+grow_vertical = 1
 
 [node name="Label" parent="UI/UI/CenteredMenus/Controls/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 text = "Controls"
@@ -266,6 +288,7 @@ text = "Back"
 script = ExtResource("7_6dkgt")
 
 [node name="Leaderboard" parent="UI/UI/CenteredMenus" index="3" node_paths=PackedStringArray("SCORE_CONTAINER", "LOAD_LABEL") instance=ExtResource("2_d73b0")]
+visible = false
 layout_mode = 2
 script = ExtResource("24_yysj1")
 ENTRY_SCENE = ExtResource("25_2hsp7")
@@ -282,17 +305,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" parent="UI/UI/CenteredMenus/Leaderboard" index="1"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -140.0
-offset_top = -26.0
-offset_right = 140.0
-offset_bottom = 26.0
-grow_horizontal = 2
+[node name="GameTitle" parent="UI/UI/CenteredMenus/Leaderboard" index="1"]
+TITLE_TEXT = "Top 10"
+SUB_TITLE_TEXT = "scores:"
+
+[node name="Title" parent="UI/UI/CenteredMenus/Leaderboard/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Top 10"
+
+[node name="SubTitle" parent="UI/UI/CenteredMenus/Leaderboard/GameTitle/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+text = "scores:"
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/Leaderboard" index="2"]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = -75.0
+offset_right = 160.0
+offset_bottom = 75.0
+grow_vertical = 1
 
 [node name="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+visible = false
 text = "Top Scores:"
 
 [node name="LoadLabel" type="Label" parent="UI/UI/CenteredMenus/Leaderboard/PanelContainer/MarginContainer/VBoxContainer" index="1"]
@@ -321,7 +355,11 @@ use_npc_controller = true
 
 [editable path="UI/UI"]
 [editable path="UI/UI/CenteredMenus/MainMenu"]
+[editable path="UI/UI/CenteredMenus/MainMenu/GameTitle"]
 [editable path="UI/UI/CenteredMenus/Settings"]
+[editable path="UI/UI/CenteredMenus/Settings/GameTitle"]
 [editable path="UI/UI/CenteredMenus/Controls"]
+[editable path="UI/UI/CenteredMenus/Controls/GameTitle"]
 [editable path="UI/UI/CenteredMenus/Leaderboard"]
+[editable path="UI/UI/CenteredMenus/Leaderboard/GameTitle"]
 [editable path="Traffic"]

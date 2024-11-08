@@ -19,7 +19,7 @@ func load_leadboard_entries() -> void:
 	var scores = await SilentWolf.Scores.get_scores().sw_get_scores_complete
 	var pos = 1
 	for score in scores["scores"]:
-		await create_leaderboard_entry(pos, score.player_name, score.score)
+		create_leaderboard_entry(pos, score.player_name, score.score)
 		pos += 1
 	LOAD_LABEL.visible = false
 	await  get_tree().create_timer(.1).timeout
