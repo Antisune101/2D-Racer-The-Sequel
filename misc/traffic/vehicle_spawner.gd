@@ -3,6 +3,7 @@
 extends Node
 class_name VehicleSpawner
 
+@export var is_active: bool = true
 @export var vehicle_scene: PackedScene
 @export var vehicle_database: VehicleDatabase
 @export var movement_path: Path2D
@@ -17,6 +18,10 @@ var segment_size: float = 500.0
 var current_segment: Dictionary = {
 	"is_finished": false
 }
+
+
+func _enter_tree() -> void:
+	if !is_active: queue_free()
 
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_page_up"): on_segment_past()
