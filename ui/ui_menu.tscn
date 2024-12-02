@@ -23,6 +23,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e8s7c")
+btn_list_path = NodePath("PanelContainer/MarginContainer/VBoxContainer/Buttons")
+btn_grid_path = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridButtons")
 
 [node name="GameTitle" parent="." instance=ExtResource("2_q1kn2")]
 layout_mode = 1
@@ -61,5 +63,9 @@ text = "Menu Title"
 
 [node name="Buttons" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" groups=["button_container"]]
 layout_mode = 2
+
+[node name="GridButtons" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" groups=["button_container"]]
+layout_mode = 2
+theme_override_constants/h_separation = 10
 
 [editable path="GameTitle"]
