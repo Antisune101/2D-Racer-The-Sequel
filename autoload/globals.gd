@@ -26,11 +26,15 @@ enum VehicleType {
 	STATION_WAGON
 }
 
+var score: int = 0
+var player_name: String = ""
+var player_name_limit: int = 12
+
 var vehicle_database: VehicleDatabase = load("res://vehicle/data/database.tres")
 
 
 func _ready() -> void:
-	var path: String = "res://.env"
+	var path: String = "res://silent_wolf_api.env"
 	if !FileAccess.file_exists(path):
 		push_warning("No env file found. Leaderboard unavailable")
 		push_warning("If you want acces to leaderboard visit https://silentwolf.com/ for more info")
