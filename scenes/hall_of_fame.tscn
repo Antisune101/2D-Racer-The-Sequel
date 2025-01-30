@@ -1,0 +1,324 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxcw38qcdsf4q"]
+
+[ext_resource type="PackedScene" uid="uid://c6diigt41pq5e" path="res://ui/ui.tscn" id="1_k5hc1"]
+[ext_resource type="Script" path="res://ui/menus/highscore/ui_highscore.gd" id="2_b20uc"]
+[ext_resource type="PackedScene" uid="uid://cn2db17smb8fn" path="res://ui/ui_menu.tscn" id="2_otunn"]
+[ext_resource type="Script" path="res://ui/buttons/ui_osk_letter_btn.gd" id="3_p3x3c"]
+[ext_resource type="Script" path="res://ui/buttons/ui_button.gd" id="4_tgg1p"]
+[ext_resource type="Texture2D" uid="uid://dkkb1iw2mq7ab" path="res://assets/art/input icons/OSK/keyboard_backspace_icon.svg" id="5_vkymp"]
+[ext_resource type="Texture2D" uid="uid://5plj8a6ha80y" path="res://assets/art/input icons/OSK/keyboard_space_icon.png" id="6_4fxk3"]
+[ext_resource type="Script" path="res://ui/buttons/ui_change_scene_btn.gd" id="8_twl0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsbqx"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.862745)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 15
+shadow_offset = Vector2(0, 10)
+
+[node name="HallOfFame" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" node_paths=PackedStringArray("starting_menu") instance=ExtResource("1_k5hc1")]
+starting_menu = NodePath("CenteredMenus/Highscore")
+
+[node name="Highscore" parent="CanvasLayer/UI/CenteredMenus" index="0" node_paths=PackedStringArray("GAME_OVER_MENU", "LOADING_MENU", "NAME_LABEL", "DELETE_BTN", "SPACE_BTN", "SUBMIT_BTN") instance=ExtResource("2_otunn")]
+layout_mode = 2
+script = ExtResource("2_b20uc")
+GAME_OVER_MENU = NodePath("../GameOver")
+LOADING_MENU = NodePath("../Loading")
+NAME_LABEL = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/PlayerName")
+DELETE_BTN = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridButtons/DeleteBtn")
+SPACE_BTN = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridButtons/SpaceBtn")
+SUBMIT_BTN = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridButtons/SubmitBtn")
+NAME_CHAR_LIMIT = 12
+is_grid = true
+
+[node name="PanelContainer" parent="CanvasLayer/UI/CenteredMenus/Highscore" index="1"]
+offset_left = -220.0
+offset_top = -75.0
+offset_right = 220.0
+offset_bottom = 158.0
+
+[node name="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Enter your name:"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rsbqx")
+
+[node name="PlayerName" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Buttons" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="GridButtons" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer" index="3"]
+columns = 7
+
+[node name="A" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="0"]
+layout_mode = 2
+text = "A"
+script = ExtResource("3_p3x3c")
+
+[node name="B" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="1"]
+layout_mode = 2
+text = "B"
+script = ExtResource("3_p3x3c")
+
+[node name="C" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="2"]
+layout_mode = 2
+text = "C"
+script = ExtResource("3_p3x3c")
+letter = "C"
+
+[node name="D" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="3"]
+layout_mode = 2
+text = "D"
+script = ExtResource("3_p3x3c")
+letter = "D"
+
+[node name="E" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="4"]
+layout_mode = 2
+text = "E"
+script = ExtResource("3_p3x3c")
+letter = "E"
+
+[node name="F" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="5"]
+layout_mode = 2
+text = "F"
+script = ExtResource("3_p3x3c")
+letter = "F"
+
+[node name="DeleteBtn" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="6"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+script = ExtResource("4_tgg1p")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons/DeleteBtn"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.5
+offset_right = 41.0
+offset_bottom = 18.5
+grow_vertical = 2
+texture = ExtResource("5_vkymp")
+expand_mode = 2
+
+[node name="G" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="7"]
+layout_mode = 2
+text = "G"
+script = ExtResource("3_p3x3c")
+letter = "G"
+
+[node name="H" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="8"]
+layout_mode = 2
+text = "H"
+script = ExtResource("3_p3x3c")
+letter = "H"
+
+[node name="I" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="9"]
+layout_mode = 2
+text = "I"
+script = ExtResource("3_p3x3c")
+letter = "I"
+
+[node name="J" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="10"]
+layout_mode = 2
+text = "J"
+script = ExtResource("3_p3x3c")
+letter = "J"
+
+[node name="K" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="11"]
+layout_mode = 2
+text = "K"
+script = ExtResource("3_p3x3c")
+letter = "K"
+
+[node name="L" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="12"]
+layout_mode = 2
+text = "L"
+script = ExtResource("3_p3x3c")
+letter = "L"
+
+[node name="SpaceBtn" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="13"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+script = ExtResource("4_tgg1p")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons/SpaceBtn"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 40.0
+offset_bottom = 12.5
+grow_vertical = 2
+texture = ExtResource("6_4fxk3")
+expand_mode = 2
+
+[node name="M" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="14"]
+layout_mode = 2
+text = "M"
+script = ExtResource("3_p3x3c")
+letter = "M"
+
+[node name="N" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="15"]
+layout_mode = 2
+text = "N"
+script = ExtResource("3_p3x3c")
+letter = "N"
+
+[node name="O" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="16"]
+layout_mode = 2
+text = "O"
+script = ExtResource("3_p3x3c")
+letter = "O"
+
+[node name="P" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="17"]
+layout_mode = 2
+text = "P"
+script = ExtResource("3_p3x3c")
+letter = "P"
+
+[node name="Q" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="18"]
+layout_mode = 2
+text = "Q"
+script = ExtResource("3_p3x3c")
+letter = "Q"
+
+[node name="R" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="19"]
+layout_mode = 2
+text = "R"
+script = ExtResource("3_p3x3c")
+letter = "R"
+
+[node name="SubmitBtn" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="20"]
+layout_mode = 2
+text = "SUBMIT SCORE"
+script = ExtResource("4_tgg1p")
+
+[node name="S" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="21"]
+layout_mode = 2
+text = "S"
+script = ExtResource("3_p3x3c")
+letter = "S"
+
+[node name="T" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="22"]
+layout_mode = 2
+text = "T"
+script = ExtResource("3_p3x3c")
+letter = "T"
+
+[node name="U" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="23"]
+layout_mode = 2
+text = "U"
+script = ExtResource("3_p3x3c")
+letter = "U"
+
+[node name="V" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="24"]
+layout_mode = 2
+text = "V"
+script = ExtResource("3_p3x3c")
+letter = "V"
+
+[node name="W" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="25"]
+layout_mode = 2
+text = "W"
+script = ExtResource("3_p3x3c")
+letter = "W"
+
+[node name="X" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="26"]
+layout_mode = 2
+text = "X"
+script = ExtResource("3_p3x3c")
+letter = "X"
+
+[node name="CancelBtn" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="27"]
+layout_mode = 2
+text = "Useless buttton
+(For spacing purposes)"
+script = ExtResource("4_tgg1p")
+
+[node name="Y" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="28"]
+layout_mode = 2
+text = "Y"
+script = ExtResource("3_p3x3c")
+letter = "Y"
+
+[node name="Z" type="Label" parent="CanvasLayer/UI/CenteredMenus/Highscore/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="29"]
+layout_mode = 2
+text = "Z"
+script = ExtResource("3_p3x3c")
+letter = "Z"
+
+[node name="GameOver" parent="CanvasLayer/UI/CenteredMenus" index="1" instance=ExtResource("2_otunn")]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" parent="CanvasLayer/UI/CenteredMenus/GameOver" index="1"]
+offset_top = -75.0
+offset_bottom = 11.0
+
+[node name="Label" parent="CanvasLayer/UI/CenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+visible = false
+
+[node name="UIChangeSceneBtn" type="Label" parent="CanvasLayer/UI/CenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0"]
+layout_mode = 2
+text = "Restart"
+script = ExtResource("8_twl0o")
+scene_id = "game"
+
+[node name="UIChangeSceneBtn2" type="Label" parent="CanvasLayer/UI/CenteredMenus/GameOver/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="1"]
+layout_mode = 2
+text = "Return to Menu"
+script = ExtResource("8_twl0o")
+scene_id = "main_menu"
+
+[node name="Loading" parent="CanvasLayer/UI/CenteredMenus" index="2" groups=["no_transition_menu"] instance=ExtResource("2_otunn")]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" parent="CanvasLayer/UI/CenteredMenus/Loading" index="1"]
+offset_top = -75.0
+offset_bottom = 11.0
+
+[node name="Label" parent="CanvasLayer/UI/CenteredMenus/Loading/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Submitting Score..."
+
+[node name="Buttons" parent="CanvasLayer/UI/CenteredMenus/Loading/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+visible = false
+
+[node name="GridButtons" parent="CanvasLayer/UI/CenteredMenus/Loading/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="UncenteredMenus" parent="CanvasLayer/UI" index="2"]
+offset_left = -11.0
+offset_top = 4.0
+offset_right = -11.0
+offset_bottom = 4.0
+
+[editable path="CanvasLayer/UI"]
+[editable path="CanvasLayer/UI/CenteredMenus/Highscore"]
+[editable path="CanvasLayer/UI/CenteredMenus/Highscore/GameTitle"]
+[editable path="CanvasLayer/UI/CenteredMenus/GameOver"]
+[editable path="CanvasLayer/UI/CenteredMenus/GameOver/GameTitle"]
+[editable path="CanvasLayer/UI/CenteredMenus/Loading"]
+[editable path="CanvasLayer/UI/CenteredMenus/Loading/GameTitle"]

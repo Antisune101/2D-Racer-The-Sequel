@@ -97,6 +97,7 @@ text = "Back"
 script = ExtResource("7_h2kj3")
 
 [node name="ChangeCar" parent="UI/UI/CenteredMenus" index="2" instance=ExtResource("2_3t46i")]
+visible = false
 layout_mode = 2
 
 [node name="GameTitle" parent="UI/UI/CenteredMenus/ChangeCar" index="0"]

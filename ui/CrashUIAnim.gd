@@ -10,4 +10,3 @@ func _ready() -> void:
 	await Globals.game_over
 	anim_player.play("GameOver")
 	await anim_player.animation_finished
-	Globals.change_to_menu.emit(game_over_menu)

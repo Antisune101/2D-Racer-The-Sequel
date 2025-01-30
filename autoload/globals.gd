@@ -6,6 +6,12 @@ signal game_over
 signal player_speed_updated
 signal player_color_updated(new_color: int)
 signal reload_menu_cursor
+signal osk_letter_input(letter: String)
+
+# Signals related to the on screen keyboard or O.S.K for short
+signal osk_delete_input
+signal osk_space_input
+signal osk_enter_input
 
 enum CarColors {
 	RED,

@@ -52,9 +52,10 @@ _data = {
 "RESET": SubResource("Animation_ptmv6")
 }
 
-[node name="Game" node_paths=PackedStringArray("score_label") instance=ExtResource("1_l8b2v")]
+[node name="Game" node_paths=PackedStringArray("score_label", "game_over_menu") instance=ExtResource("1_l8b2v")]
 script = ExtResource("2_eirjf")
 score_label = NodePath("UI/UI/UncenteredMenus/InGame/HBoxContainer/ScoreLabel")
+game_over_menu = NodePath("UI/UI/UncenteredMenus/GameOver")
 
 [node name="UI" parent="UI" index="0" node_paths=PackedStringArray("starting_menu")]
 starting_menu = NodePath("UncenteredMenus/InGame")

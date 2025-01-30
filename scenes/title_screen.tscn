@@ -84,14 +84,34 @@ text = "Controls
 script = ExtResource("4_bkuiu")
 target_menu = NodePath("../../../../../../Controls")
 
-[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3"]
+[node name="UISwitchMenuBtn4" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="3" node_paths=PackedStringArray("target_menu")]
+layout_mode = 2
+text = "Test"
+script = ExtResource("4_bkuiu")
+target_menu = NodePath("../../../../../../Settings")
+
+[node name="UIExitBtn" type="Label" parent="UI/UI/CenteredMenus/MainMenu/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="4"]
 layout_mode = 2
 text = "Exit"
 script = ExtResource("5_viewp")
 
 [node name="Settings" parent="UI/UI/CenteredMenus" index="1" instance=ExtResource("2_d73b0")]
-visible = false
 layout_mode = 2
+is_grid = true
+
+[node name="PanelContainer" parent="UI/UI/CenteredMenus/Settings" index="1"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Buttons" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+visible = false
 
 [node name="UISwitchMenuBtn" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/Buttons" index="0" node_paths=PackedStringArray("target_menu")]
 layout_mode = 2
@@ -103,6 +123,56 @@ target_menu = NodePath("../../../../../../Controls")
 layout_mode = 2
 text = "Back"
 script = ExtResource("7_6dkgt")
+
+[node name="GridButtons" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+theme_override_constants/h_separation = 22
+theme_override_constants/v_separation = 12
+columns = 3
+
+[node name="UIBackBtn" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="0"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("7_6dkgt")
+
+[node name="UIButton" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="1"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton2" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="2"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton3" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="3"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton4" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="4"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton5" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="5"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton6" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="6"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton7" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="7"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
+
+[node name="UIButton8" type="Label" parent="UI/UI/CenteredMenus/Settings/PanelContainer/MarginContainer/VBoxContainer/GridButtons" index="8"]
+layout_mode = 2
+text = "Test"
+script = ExtResource("26_radbe")
 
 [node name="Controls" parent="UI/UI/CenteredMenus" index="2" instance=ExtResource("2_d73b0")]
 visible = false
@@ -282,6 +352,7 @@ text = "Back"
 script = ExtResource("7_6dkgt")
 
 [node name="Leaderboard" parent="UI/UI/CenteredMenus" index="3" node_paths=PackedStringArray("SCORE_CONTAINER", "LOAD_LABEL") instance=ExtResource("2_d73b0")]
+visible = false
 layout_mode = 2
 script = ExtResource("24_yysj1")
 ENTRY_SCENE = ExtResource("25_2hsp7")

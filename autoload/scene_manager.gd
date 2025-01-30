@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @export_category("Trans Animation")
 @export var duration: float
 @export var pause: float
@@ -7,7 +8,7 @@ extends Node2D
 
 var current_scene: String = "main_menu"
 var is_transitioning: bool = false
-
+var is_covered: bool = false
 
 @onready var cover: ColorRect = $CanvasLayer/ColorRect
 @onready var cover_width: float = cover.size.x
@@ -16,6 +17,7 @@ var is_transitioning: bool = false
 const SCENES: Dictionary = {
 	"main_menu": "res://scenes/title_screen.tscn",
 	"game": "res://scenes/game.tscn",
+	"hall_of_fame": "res://scenes/hall_of_fame.tscn",
 	"debug": "res://scenes/debug_game.tscn",
 	"customize": "res://scenes/customize_scene.tscn"
 }
@@ -45,12 +47,13 @@ func transition_to_scene(new_scene: String) -> void:
 
 
 func cover_screen() -> void:
+	is_covered = true
+	cover.position = Vector2(-cover_width, 0)
 	await get_tween().set_ease(Tween.EASE_IN).tween_property(cover, "position", Vector2.ZERO, duration).finished
-
 
 func show_screen() -> void:
 	await get_tween().set_ease(Tween.EASE_IN_OUT).tween_property(cover, "position", Vector2(cover_width, 0), duration).finished
-	cover.position = Vector2(-cover_width, 0)
+	is_covered = false
 
 
 func get_tween() -> Tween:
